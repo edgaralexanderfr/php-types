@@ -17,6 +17,11 @@
 1. [Requirements](#requirements)
 2. [Installation](#installation)
 3. [Usage](#usage)
+- [3.1 Primitive types](#primitive-types)
+- - [3.1.1 `BoolArray`](#bool-array)
+- - [3.1.2 `IntArray`](#int-array)
+- - [3.1.3 `FloatArray`](#float-array)
+- - [3.1.4 `StringArray`](#string-array)
 
 <a name="requirements"></a>
 
@@ -44,7 +49,11 @@ You can always download the library as _.zip_ file, decompress it, store it some
 
 ## Usage
 
+<a name="primitive-types"></a>
+
 ### Primitive types
+
+<a name="bool-array"></a>
 
 #### `BoolArray`
 
@@ -77,6 +86,8 @@ php examples/bool_array.php
 
 ```
 
+<a name="int-array"></a>
+
 #### `IntArray`
 
 ```php
@@ -108,6 +119,8 @@ php examples/int_array.php
 3
 ```
 
+<a name="float-array"></a>
+
 #### `FloatArray`
 
 ```php
@@ -138,6 +151,8 @@ php examples/float_array.php
 2.3
 4.5
 ```
+
+<a name="string-array"></a>
 
 #### `StringArray`
 
