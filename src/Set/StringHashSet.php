@@ -6,7 +6,7 @@ namespace PHPTypes\Set;
 
 use Iterator;
 
-class IntHashSet implements Iterator
+class StringHashSet implements Iterator
 {
     private array $hash_set;
 
@@ -20,7 +20,7 @@ class IntHashSet implements Iterator
         return $this->hash_set;
     }
 
-    public function add(int $value): bool
+    public function add(string $value): bool
     {
         if ($this->contains($value)) {
             return false;
@@ -31,7 +31,7 @@ class IntHashSet implements Iterator
         return true;
     }
 
-    public function contains(int $value): bool
+    public function contains(string $value): bool
     {
         return isset($this->hash_set[$value]);
     }
@@ -76,7 +76,7 @@ class IntHashSet implements Iterator
         $this->rewind();
     }
 
-    public function remove(int $value): bool
+    public function remove(string $value): bool
     {
         if ($this->contains($value)) {
             unset($this->hash_set[$value]);
