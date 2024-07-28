@@ -22,6 +22,10 @@
 - - [3.1.2 `IntArray`](#int-array)
 - - [3.1.3 `FloatArray`](#float-array)
 - - [3.1.4 `StringArray`](#string-array)
+- [3.2 Data structures](#data-structures)
+- - [3.2.1 `HashSet`](#hash-set)
+- - [3.2.2 `IntHashSet`](#int-hash-set)
+- - [3.2.3 `StringHashSet`](#string-hash-set)
 
 <a name="requirements"></a>
 
@@ -183,4 +187,110 @@ php examples/string_array.php
 🍎
 🍊
 🍌
+```
+
+<a name="data-structures"></a>
+
+### Data structures
+
+<a name="hash-set"></a>
+
+#### `HashSet`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Set\HashSet;
+
+$set = new HashSet();
+$set->add(1);
+$set->add('two');
+$set->add(3);
+$set->add(3);
+$set->add('two');
+$set->add('one');
+
+foreach ($set as $value) {
+    echo $value . PHP_EOL;
+}
+```
+
+```bash
+php examples/hash_set.php
+1
+two
+3
+one
+```
+
+<a name="int-hash-set"></a>
+
+#### `IntHashSet`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Set\IntHashSet;
+
+$set = new IntHashSet();
+$set->add(1);
+$set->add(2);
+$set->add(3);
+$set->add(3);
+$set->add(2);
+$set->add(1);
+$set->add(0);
+
+foreach ($set as $value) {
+    echo $value . PHP_EOL;
+}
+```
+
+```bash
+php examples/int_hash_set.php
+1
+2
+3
+0
+```
+
+<a name="string-hash-set"></a>
+
+#### `StringHashSet`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Set\StringHashSet;
+
+$set = new StringHashSet();
+$set->add('🍎');
+$set->add('🍊');
+$set->add('🍌');
+$set->add('🍌');
+$set->add('🥭');
+
+foreach ($set as $value) {
+    echo $value . PHP_EOL;
+}
+```
+
+```bash
+php examples/string_hash_set.php
+🍎
+🍊
+🍌
+🥭
 ```
