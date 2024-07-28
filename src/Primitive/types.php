@@ -4,29 +4,47 @@ declare(strict_types=1);
 
 namespace PHPTypes\Primitive;
 
-use PHPTypes\Primitive\StringArray;
-
-function bool_array(bool ...$values): BoolArray
+class bool_array_t extends BoolArray
 {
-    return new BoolArray(...$values);
 }
 
-function int_array(int ...$values): IntArray
+class int_array_t extends IntArray
 {
-    return new IntArray(...$values);
 }
 
-function double_array(float ...$values): DoubleArray
+class double_array_t extends DoubleArray
 {
-    return new DoubleArray(...$values);
 }
 
-function float_array(float ...$values): FloatArray
+class float_array_t extends FloatArray
 {
-    return new FloatArray(...$values);
 }
 
-function string_array(string ...$values): StringArray
+class string_array_t extends StringArray
 {
-    return new StringArray(...$values);
+}
+
+function bool_array(bool ...$values): bool_array_t
+{
+    return new bool_array_t(...$values);
+}
+
+function int_array(int ...$values): int_array_t
+{
+    return new int_array_t(...$values);
+}
+
+function double_array(float ...$values): double_array_t
+{
+    return new double_array_t(...$values);
+}
+
+function float_array(float ...$values): float_array_t
+{
+    return new float_array_t(...$values);
+}
+
+function string_array(string ...$values): string_array_t
+{
+    return new string_array_t(...$values);
 }

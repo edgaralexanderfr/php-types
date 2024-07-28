@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class BoolArray extends ArrayType
+class BoolArray extends ArrayType
 {
     protected ?string $type = 'boolean';
 

@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class IntArray extends ArrayType
+class IntArray extends ArrayType
 {
     protected ?string $type = 'integer';
 

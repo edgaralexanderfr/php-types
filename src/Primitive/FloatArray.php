@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class FloatArray extends ArrayType
+class FloatArray extends ArrayType
 {
     protected ?string $type = 'double';
 

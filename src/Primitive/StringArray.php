@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class StringArray extends ArrayType
+class StringArray extends ArrayType
 {
     protected ?string $type = 'string';
 
