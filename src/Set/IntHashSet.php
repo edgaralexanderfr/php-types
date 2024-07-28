@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPTypes\Collection\Generic;
+namespace PHPTypes\Set;
 
 use Iterator;
 
