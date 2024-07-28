@@ -26,6 +26,7 @@
 - - [3.2.1 `HashSet`](#hash-set)
 - - [3.2.2 `IntHashSet`](#int-hash-set)
 - - [3.2.3 `StringHashSet`](#string-hash-set)
+- [3.3 Type errors](#type-errors)
 
 <a name="requirements"></a>
 
@@ -293,4 +294,56 @@ php examples/string_hash_set.php
 🍊
 🍌
 🥭
+```
+
+<a name="type-errors"></a>
+
+### Type errors
+
+In case you attempt to assign a value with a type different than an array's type, a `TypeError` is thrown:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Primitive\int_array;
+
+$array = int_array(1, 2, 3);
+
+try {
+    $array[2] = '🥭';
+} catch (TypeError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+
+try {
+    $array[] = '🥭';
+} catch (TypeError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+
+$array[] = 4;
+
+print_r($array);
+```
+
+```bash
+php examples/type_error.php
+Element must be of type integer, string given, called
+Element must be of type integer, string given, called
+PHPTypes\Primitive\int_array_t Object
+(
+    [type:protected] => integer
+    [storage:ArrayIterator:private] => Array
+        (
+            [0] => 1
+            [1] => 2
+            [2] => 3
+            [3] => 4
+        )
+
+)
 ```
