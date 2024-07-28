@@ -8,7 +8,6 @@ use Iterator;
 
 class IntHashSet implements Iterator
 {
-    private int $position = 0;
     private array $hash_set;
 
     public function __construct()
@@ -90,28 +89,28 @@ class IntHashSet implements Iterator
 
     public function rewind(): void
     {
-        $this->position = reset($this->hash_set);
+        reset($this->hash_set);
     }
 
     #[\ReturnTypeWillChange]
     public function current(): mixed
     {
-        return $this->hash_set[$this->position];
+        return current($this->hash_set);
     }
 
     #[\ReturnTypeWillChange]
     public function key(): mixed
     {
-        return $this->position;
+        return key($this->hash_set);
     }
 
     public function next(): void
     {
-        $this->position = next($this->hash_set);
+        next($this->hash_set);
     }
 
     public function valid(): bool
     {
-        return isset($this->hash_set[$this->position]);
+        return key($this->hash_set) !== null;
     }
 }
