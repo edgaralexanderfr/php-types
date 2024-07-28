@@ -1,5 +1,6 @@
 {
     "name": "edgaralexanderfr/php-types",
+    "description": "Library intended to expand PHP's data types and useful data structures as well as strong types consistency in the code of target projects.",
     "version": "1.2.0",
     "type": "library",
     "license": "MIT",
