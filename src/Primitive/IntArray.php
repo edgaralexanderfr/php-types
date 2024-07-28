@@ -6,11 +6,11 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class StringArray extends ArrayType
+final class IntArray extends ArrayType
 {
-    protected ?string $type = 'string';
+    protected ?string $type = 'integer';
 
-    public function __construct(string ...$values)
+    public function __construct(int ...$values)
     {
         parent::__construct($values);
     }

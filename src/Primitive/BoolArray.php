@@ -6,11 +6,11 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayType;
 
-final class StringArray extends ArrayType
+final class BoolArray extends ArrayType
 {
-    protected ?string $type = 'string';
+    protected ?string $type = 'boolean';
 
-    public function __construct(string ...$values)
+    public function __construct(bool ...$values)
     {
         parent::__construct($values);
     }
