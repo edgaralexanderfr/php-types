@@ -22,6 +22,7 @@
 - - [3.1.2 `IntArray`](#int-array)
 - - [3.1.3 `FloatArray`](#float-array)
 - - [3.1.4 `StringArray`](#string-array)
+- - [3.1.5 `ObjectArray`](#object-array)
 - [3.2 Data structures](#data-structures)
 - - [3.2.1 `HashSet`](#hash-set)
 - - [3.2.2 `IntHashSet`](#int-hash-set)
@@ -188,6 +189,65 @@ php examples/string_array.php
 🍎
 🍊
 🍌
+```
+
+<a name="object-array"></a>
+
+#### `ObjectArray`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Primitive\object_array_t;
+
+use function PHPTypes\Primitive\object_array;
+
+function display(object_array_t $array): void
+{
+    foreach ($array as $value) {
+        print_r($value);
+    }
+}
+
+$array = object_array(
+    (object)[
+        'id' => 1,
+        'name' => 'Charles Babbage',
+    ],
+    (object)[
+        'id' => 2,
+        'name' => 'Alan Turing',
+    ],
+    (object)[
+        'id' => 3,
+        'name' => 'Edsger Dijkstra',
+    ],
+);
+
+display($array);
+```
+
+```bash
+php examples/object_array.php 
+stdClass Object
+(
+    [id] => 1
+    [name] => Charles Babbage
+)
+stdClass Object
+(
+    [id] => 2
+    [name] => Alan Turing
+)
+stdClass Object
+(
+    [id] => 3
+    [name] => Edsger Dijkstra
+)
 ```
 
 <a name="data-structures"></a>

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PHPTypes\Primitive;
 
+use stdClass;
+
 class bool_array_t extends BoolArray
 {
 }
@@ -21,6 +23,10 @@ class float_array_t extends FloatArray
 }
 
 class string_array_t extends StringArray
+{
+}
+
+class object_array_t extends ObjectArray
 {
 }
 
@@ -47,4 +53,9 @@ function float_array(float ...$values): float_array_t
 function string_array(string ...$values): string_array_t
 {
     return new string_array_t(...$values);
+}
+
+function object_array(stdClass ...$values): object_array_t
+{
+    return new object_array_t(...$values);
 }
