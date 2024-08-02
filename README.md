@@ -18,11 +18,12 @@
 2. [Installation](#installation)
 3. [Usage](#usage)
 - [3.1 Primitive types](#primitive-types)
-- - [3.1.1 `BoolArray`](#bool-array)
-- - [3.1.2 `IntArray`](#int-array)
-- - [3.1.3 `FloatArray`](#float-array)
-- - [3.1.4 `StringArray`](#string-array)
-- - [3.1.5 `ObjectArray`](#object-array)
+- - [3.1.1 `ObjectType`](#object-type)
+- - [3.1.2 `BoolArray`](#bool-array)
+- - [3.1.3 `IntArray`](#int-array)
+- - [3.1.4 `FloatArray`](#float-array)
+- - [3.1.5 `StringArray`](#string-array)
+- - [3.1.6 `ObjectArray`](#object-array)
 - [3.2 Data structures](#data-structures)
 - - [3.2.1 `HashSet`](#hash-set)
 - - [3.2.2 `IntHashSet`](#int-hash-set)
@@ -49,7 +50,13 @@ composer require edgaralexanderfr/php-types
 
 or:
 
-You can always download the library as _.zip_ file, decompress it, store it somewhere in your target project and include the _autoload.php_ file from the library's project root.
+You can always download the library as _.zip_ file, decompress it, store it somewhere in your target project and include the _autoload.php_ file from the library's project root:
+
+```bash
+curl -L -o php-types-master.zip https://github.com/edgaralexanderfr/php-types/archive/refs/heads/master.zip \
+&& unzip php-types-master.zip \
+&& rm php-types-master.zip
+```
 
 <a name="usage"></a>
 
@@ -58,6 +65,52 @@ You can always download the library as _.zip_ file, decompress it, store it some
 <a name="primitive-types"></a>
 
 ### Primitive types
+
+<a name="object-type"></a>
+
+#### `ObjectType`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Primitive\object_t;
+
+use function PHPTypes\Primitive\object;
+
+function display(object_t $object): void
+{
+    echo "{$object->name}:" . PHP_EOL;
+    echo $object->json() . PHP_EOL;
+}
+
+$object = object([
+    'name' => 'Ford Mustang GT',
+    'brand' => 'Ford',
+    'category' => 'Muscle Car',
+    'gas' => 0.8,
+    'engine' => object([
+        'type' => 'V8',
+        'rpm' => 750,
+    ]),
+    'transmission' => object([
+        'type' => 'manual',
+        'status' => 1,
+        'gears' => ['R', 'N', '1', '2', '3', '4', '5', '6'],
+    ]),
+]);
+
+display($object);
+```
+
+```bash
+php examples/object.php
+Ford Mustang GT:
+{"name":"Ford Mustang GT","brand":"Ford","category":"Muscle Car","gas":0.8,"engine":{"type":"V8","rpm":750},"transmission":{"type":"manual","status":1,"gears":["R","N","1","2","3","4","5","6"]}}
+```
 
 <a name="bool-array"></a>
 
@@ -204,6 +257,7 @@ include 'vendor/autoload.php';
 
 use PHPTypes\Primitive\object_array_t;
 
+use function PHPTypes\Primitive\object;
 use function PHPTypes\Primitive\object_array;
 
 function display(object_array_t $array): void
@@ -214,36 +268,36 @@ function display(object_array_t $array): void
 }
 
 $array = object_array(
-    (object)[
+    object([
         'id' => 1,
         'name' => 'Charles Babbage',
-    ],
-    (object)[
+    ]),
+    object([
         'id' => 2,
         'name' => 'Alan Turing',
-    ],
-    (object)[
+    ]),
+    object([
         'id' => 3,
         'name' => 'Edsger Dijkstra',
-    ],
+    ]),
 );
 
 display($array);
 ```
 
 ```bash
-php examples/object_array.php 
-stdClass Object
+php examples/object_array.php
+PHPTypes\Primitive\object_t Object
 (
     [id] => 1
     [name] => Charles Babbage
 )
-stdClass Object
+PHPTypes\Primitive\object_t Object
 (
     [id] => 2
     [name] => Alan Turing
 )
-stdClass Object
+PHPTypes\Primitive\object_t Object
 (
     [id] => 3
     [name] => Edsger Dijkstra

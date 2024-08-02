@@ -6,6 +6,10 @@ namespace PHPTypes\Primitive;
 
 use stdClass;
 
+class object_t extends ObjectType
+{
+}
+
 class bool_array_t extends BoolArray
 {
 }
@@ -28,6 +32,11 @@ class string_array_t extends StringArray
 
 class object_array_t extends ObjectArray
 {
+}
+
+function object(array|stdClass $values): object_t
+{
+    return new object_t($values);
 }
 
 function bool_array(bool ...$values): bool_array_t
@@ -55,7 +64,7 @@ function string_array(string ...$values): string_array_t
     return new string_array_t(...$values);
 }
 
-function object_array(stdClass ...$values): object_array_t
+function object_array(object_t ...$values): object_array_t
 {
     return new object_array_t(...$values);
 }
