@@ -22,4 +22,14 @@ class ArrayType extends ArrayIterator
 
         parent::offsetSet($offset, $value);
     }
+
+    public function isEmpty(): bool
+    {
+        return $this->count() == 0;
+    }
+
+    public function hasAny(): bool
+    {
+        return $this->count() > 0;
+    }
 }

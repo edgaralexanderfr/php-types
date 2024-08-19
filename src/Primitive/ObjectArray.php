@@ -8,9 +8,12 @@ use PHPTypes\ArrayObject;
 
 class ObjectArray extends ArrayObject
 {
-    protected string $object = object_t::class;
+    protected array $object = [
+        ObjectType::class => ObjectType::class,
+        object_t::class => object_t::class,
+    ];
 
-    public function __construct(object_t ...$values)
+    public function __construct(ObjectType|object_t ...$values)
     {
         parent::__construct($values);
     }
