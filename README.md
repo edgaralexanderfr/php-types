@@ -1,7 +1,7 @@
 # PHP Types 🐘
 
 <a href="https://github.com/edgaralexanderfr/php-types/releases/latest" target="_blank">
-    <img src="https://img.shields.io/badge/version-v1.5.0-informational.svg" alt="View last release" title="View last release" />
+    <img src="https://img.shields.io/badge/version-v1.6.0-informational.svg" alt="View last release" title="View last release" />
 </a>
 <a href="https://www.php.net/releases/8.3/en.php" target="_blank">
     <img src="https://img.shields.io/badge/php->=8.3.0-informational.svg" alt="PHP 8.3.0" title="Requires PHP 8.3.0 or major" />
