@@ -29,6 +29,7 @@
 - - [3.2.2 `IntHashSet`](#int-hash-set)
 - - [3.2.3 `StringHashSet`](#string-hash-set)
 - [3.3 Type errors](#type-errors)
+- [3.4 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
 
 <a name="requirements"></a>
 
@@ -460,4 +461,39 @@ PHPTypes\Primitive\int_array_t Object
         )
 
 )
+```
+
+<a name="has-any-is-empty"></a>
+
+### `hasAny()` and `isEmpty()` methods
+
+Arrays contain useful methods that help to determine whether if they're empty or contain at least 1 element in them:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Primitive\object_array;
+use function PHPTypes\Primitive\string_array;
+
+$fruits = string_array('🥭');
+
+if ($fruits->hasAny()) {
+    echo '`$fruits` contains at least 1 element.' . PHP_EOL;
+}
+
+$objects = object_array();
+
+if ($objects->isEmpty()) {
+    echo '`$objects` is an empty array.' . PHP_EOL;
+}
+```
+
+```bash
+php examples/has_any_is_empty.php
+`$fruits` contains at least 1 element.
+`$objects` is an empty array.
 ```

@@ -10,7 +10,7 @@
  */
 
 try {
-    $pharFile = 'bin/php-types.phar';
+    $pharFile = 'lib/php-types.phar';
 
     // clean up
     if (file_exists($pharFile)) {
