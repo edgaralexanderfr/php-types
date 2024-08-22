@@ -59,6 +59,28 @@ curl -L -o php-types-master.zip https://github.com/edgaralexanderfr/php-types/ar
 && rm php-types-master.zip
 ```
 
+or:
+
+You can download the packed _.phar_ version of the library:
+
+```bash
+mkdir lib \
+&& curl -L -o lib/php-types.phar https://github.com/edgaralexanderfr/php-types/raw/master/lib/php-types.phar
+```
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'lib/php-types.phar';
+
+use function PHPTypes\Primitive\string_array;
+
+$message = string_array('Hello', 'world', '!');
+print_r($message);
+```
+
 <a name="usage"></a>
 
 ## Usage
