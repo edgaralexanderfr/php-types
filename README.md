@@ -136,7 +136,7 @@ display($object);
 ```bash
 php examples/object.php
 Ford Mustang GT:
-{"name":"Ford Mustang GT","brand":"Ford","category":"Muscle Car","gas":0.8,"engine":{"type":"V8","rpm":750},"transmission":{"type":"manual","status":1,"gears":["R","N","1","2","3","4","5","6"]}}
+{"name":"Ford Mustang GT","brand":"Ford","category":"Muscle Car","gas":0.8,"engine":{"type":"V8","rpm":750},"transmission":{"type":"manual","gear":1,"gears":["R","N","1","2","3","4","5","6"]}}
 ```
 
 <a name="bool-array"></a>
