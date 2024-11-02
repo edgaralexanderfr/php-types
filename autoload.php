@@ -20,4 +20,5 @@ function php_types_autoload(string $class): void
 
 spl_autoload_register('php_types_autoload');
 
+include __DIR__ . '/src/main.php';
 include __DIR__ . '/src/Primitive/types.php';

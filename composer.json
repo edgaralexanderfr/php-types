@@ -13,6 +13,7 @@
     "require": {},
     "autoload": {
         "files": [
+            "src/main.php",
             "src/Primitive/types.php"
         ],
         "psr-4": {
