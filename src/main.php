@@ -9,7 +9,11 @@ if (!defined('PHPTYPES_IGNORE_MAIN') || !PHPTYPES_IGNORE_MAIN) {
         if ((!defined('PHPTYPES_IGNORE_MAIN') || !PHPTYPES_IGNORE_MAIN) && function_exists('main')) {
             global $argc, $argv;
 
-            exit((int) main((int) $argc, string_array(...$argv)));
+            if (isset($argc) && isset($argv)) {
+                exit((int) main((int) $argc, string_array(...$argv)));
+            } else {
+                exit((int) main(0, string_array()));
+            }
         }
     });
 }
