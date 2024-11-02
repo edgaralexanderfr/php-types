@@ -30,6 +30,10 @@
 - - [3.2.3 `StringHashSet`](#string-hash-set)
 - [3.3 Type errors](#type-errors)
 - [3.4 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
+- [3.5 The `main()` function](#the-main-function)
+- - [3.5.1 Defining a `main` function](#defining-a-main-function)
+- - [3.5.2 `main` function arguments](#main-function-arguments)
+- - [3.5.3 Ignore `main` function call](#ignore-main-function-call)
 
 <a name="requirements"></a>
 
@@ -111,18 +115,18 @@ function display(object_t $object): void
 }
 
 $object = object([
-    'name' => 'Ford Mustang GT',
-    'brand' => 'Ford',
-    'category' => 'Muscle Car',
-    'gas' => 0.8,
-    'engine' => object([
-        'type' => 'V8',
-        'rpm' => 750,
+    "name" => "Ford Mustang GT",
+    "brand" => "Ford",
+    "category" => "Muscle Car",
+    "gas" => 0.8,
+    "engine" => object([
+        "type" => "V8",
+        "rpm" => 750,
     ]),
-    'transmission' => object([
-        'type' => 'manual',
-        'status' => 1,
-        'gears' => ['R', 'N', '1', '2', '3', '4', '5', '6'],
+    "transmission" => object([
+        "type" => "manual",
+        "gear" => 1,
+        "gears" => ["R", "N", "1", "2", "3", "4", "5", "6"],
     ]),
 ]);
 
@@ -519,3 +523,114 @@ php examples/has_any_is_empty.php
 `$fruits` contains at least 1 element.
 `$objects` is an empty array.
 ```
+
+<a name="the-main-function"></a>
+
+### The `main()` function
+
+<a name="defining-a-main-function"></a>
+
+#### Defining a `main` function
+
+Just like in a traditional **C-Program**, you can define a `main` `function` as your _program entrypoint_ optionally:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+function main()
+{
+    echo 'Hello world!' . PHP_EOL;
+}
+```
+
+```bash
+php examples/main.php
+Hello world!
+```
+
+This helps you to aim for a more organized code structure for your program, especially if you're writing command-line programs.
+
+<a name="main-function-arguments"></a>
+
+#### `main` function arguments
+
+You can also receive command-line arguments directly from the `main` `function`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Primitive\string_array_t;
+
+function main(int $argc, string_array_t $argv): int
+{
+    printf("argc: %d\n", $argc);
+    printf("argv: %s\n", print_r($argv, true));
+
+    system("read -n 1 -s -p \"Press any key to continue...\"");
+
+    return 0;
+}
+```
+
+```bash
+php examples/main_args.php
+argc: 1
+argv: PHPTypes\Primitive\string_array_t Object
+(
+    [type:protected] => string
+    [storage:ArrayIterator:private] => Array
+        (
+            [0] => examples/main_args.php
+        )
+
+)
+
+Press any key to continue...
+```
+
+And you can also `return` the _status code_ as the result of your program execution:
+
+```bash
+echo $?
+0
+```
+
+<a name="ignore-main-function-call"></a>
+
+#### Ignore `main` function call
+
+`main` functions are only called in case they're defined in your script, however, in case you want to skip the process 100% and avoid calling the `register_shutdown_function` for the purpose, you can define a `PHPTYPES_IGNORE_MAIN` `constant` _right before_ including the **PHP Types** library or the respective _autoload.php_ file you're including.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+define('PHPTYPES_IGNORE_MAIN', true);
+
+include 'vendor/autoload.php';
+
+function main(): int
+{
+    echo 'This is not executed' . PHP_EOL;
+
+    return 0;
+}
+
+echo 'This is executed' . PHP_EOL;
+```
+
+```bash
+php examples/main_ignore.php
+This is executed
+```
+
+In case you define the `PHPTYPES_IGNORE_MAIN` `constant` after including the library or the autoload file, the `register_shutdown_function` _will still be called_, but the `main` `function` will still be ignored.
