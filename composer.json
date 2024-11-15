@@ -14,7 +14,8 @@
     "autoload": {
         "files": [
             "src/main.php",
-            "src/Primitive/types.php"
+            "src/Primitive/types.php",
+            "src/typedef.php"
         ],
         "psr-4": {
             "PHPTypes\\": "src/"
