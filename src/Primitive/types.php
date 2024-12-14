@@ -6,33 +6,14 @@ namespace PHPTypes\Primitive;
 
 use stdClass;
 
-class object_t extends ObjectType
-{
-}
-
-class bool_array_t extends BoolArray
-{
-}
-
-class int_array_t extends IntArray
-{
-}
-
-class double_array_t extends DoubleArray
-{
-}
-
-class float_array_t extends FloatArray
-{
-}
-
-class string_array_t extends StringArray
-{
-}
-
-class object_array_t extends ObjectArray
-{
-}
+class object_t extends ObjectType {}
+class bool_array_t extends BoolArray {}
+class int_array_t extends IntArray {}
+class double_array_t extends DoubleArray {}
+class float_array_t extends FloatArray {}
+class string_array_t extends StringArray {}
+class object_array_t extends ObjectArray {}
+class uint8_t extends UInt8Type {}
 
 function object(array|stdClass $values): object_t
 {
@@ -67,4 +48,9 @@ function string_array(string ...$values): string_array_t
 function object_array(object_t ...$values): object_array_t
 {
     return new object_array_t(...$values);
+}
+
+function uint8(int $value): uint8_t
+{
+    return new uint8_t($value);
 }
