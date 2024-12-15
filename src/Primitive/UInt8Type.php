@@ -4,15 +4,10 @@ declare(strict_types=1);
 
 namespace PHPTypes\Primitive;
 
-class UInt8Type implements \Stringable
+use PHPTypes\IntType;
+
+class UInt8Type extends IntType
 {
-    private int $val;
-
-    public function __construct(int $value)
-    {
-        $this->value = $value;
-    }
-
     /** @disregard */
     public int $value
     {
@@ -21,25 +16,20 @@ class UInt8Type implements \Stringable
         /** @disregard */
         set(int $value)
         {
-            if ($value >= 256) {
-                $mul = (int) floor(abs($value / 256));
-                $value -= 256 * $mul;
-            } else if ($value < 0) {
-                $mul = (int) ceil(abs($value / 256));
-                $value += 256 * $mul;
-            }
-
-            $this->val = $value;
+            $this->setValue($value);
         }
     }
 
-    public function __toString(): string
+    protected function setValue(int $value): void
     {
-        return (string) $this->val;
-    }
+        if ($value >= 256) {
+            $mul = (int) floor(abs($value / 256));
+            $value -= 256 * $mul;
+        } else if ($value < 0) {
+            $mul = (int) ceil(abs($value / 256));
+            $value += 256 * $mul;
+        }
 
-    public function toInt(): int
-    {
-        return $this->val;
+        $this->val = $value;
     }
 }
