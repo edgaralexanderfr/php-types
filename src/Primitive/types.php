@@ -21,6 +21,7 @@ class uint16_t extends UInt16Type {}
 class char_t extends CharType {}
 class uchar_t extends UCharType {}
 class size_t extends SizeType {}
+class uint8_array_t extends UInt8Array {}
 
 function object(array|stdClass $values): object_t
 {
@@ -95,4 +96,9 @@ function uchar(string|int $value): uchar_t
 function size(int $value): size_t
 {
     return new size_t($value);
+}
+
+function uint8_array(UInt8Type|uint8_t|int ...$values): uint8_array_t
+{
+    return new uint8_array_t(...$values);
 }
