@@ -19,6 +19,7 @@ class byte_t extends uint8_t {};
 class int16_t extends Int16Type {}
 class uint16_t extends UInt16Type {}
 class char_t extends CharType {}
+class uchar_t extends UCharType {}
 class size_t extends SizeType {}
 
 function object(array|stdClass $values): object_t
@@ -84,6 +85,11 @@ function uint16(int $value): uint16_t
 function char(string|int $value): char_t
 {
     return new char_t($value);
+}
+
+function uchar(string|int $value): uchar_t
+{
+    return new uchar_t($value);
 }
 
 function size(int $value): size_t
