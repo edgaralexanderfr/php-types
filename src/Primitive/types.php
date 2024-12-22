@@ -21,7 +21,15 @@ class uint16_t extends UInt16Type {}
 class char_t extends CharType {}
 class uchar_t extends UCharType {}
 class size_t extends SizeType {}
+class int8_array_t extends Int8Array {}
 class uint8_array_t extends UInt8Array {}
+class byte_array_t extends ByteArray {}
+class int16_array_t extends Int16Array {}
+class uint16_array_t extends UInt16Array {}
+class char_array_t extends CharArray {}
+class uchar_array_t extends UCharArray {}
+class size_array_t extends SizeArray {}
+class multiple_t extends MultipleType {}
 
 function object(array|stdClass $values): object_t
 {
@@ -98,7 +106,47 @@ function size(int $value): size_t
     return new size_t($value);
 }
 
+function int8_array(Int8Type|int8_t|int ...$values): int8_array_t
+{
+    return new int8_array_t(...$values);
+}
+
 function uint8_array(UInt8Type|uint8_t|int ...$values): uint8_array_t
 {
     return new uint8_array_t(...$values);
+}
+
+function byte_array(byte_t|int ...$values): byte_array_t
+{
+    return new byte_array_t(...$values);
+}
+
+function int16_array(Int16Type|int16_t|int ...$values): int16_array_t
+{
+    return new int16_array_t(...$values);
+}
+
+function uint16_array(UInt16Type|uint16_t|int ...$values): uint16_array_t
+{
+    return new uint16_array_t(...$values);
+}
+
+function char_array(char_t|string|int ...$values): char_array_t
+{
+    return new char_array_t(...$values);
+}
+
+function uchar_array(uchar_t|string|int ...$values): uchar_array_t
+{
+    return new uchar_array_t(...$values);
+}
+
+function size_array(size_t|int ...$values): size_array_t
+{
+    return new size_array_t(...$values);
+}
+
+function multiple(mixed ...$values): multiple_t
+{
+    return new multiple_t(...$values);
 }
