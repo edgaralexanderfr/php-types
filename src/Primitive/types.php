@@ -21,6 +21,7 @@ class uint16_t extends UInt16Type {}
 class char_t extends CharType {}
 class uchar_t extends UCharType {}
 class size_t extends SizeType {}
+class multiple_t extends MultipleType {}
 class int8_array_t extends Int8Array {}
 class uint8_array_t extends UInt8Array {}
 class byte_array_t extends ByteArray {}
@@ -29,7 +30,7 @@ class uint16_array_t extends UInt16Array {}
 class char_array_t extends CharArray {}
 class uchar_array_t extends UCharArray {}
 class size_array_t extends SizeArray {}
-class multiple_t extends MultipleType {}
+class multiple_array_t extends MultipleArray {}
 
 function object(array|stdClass $values): object_t
 {
@@ -106,6 +107,11 @@ function size(int $value): size_t
     return new size_t($value);
 }
 
+function multiple(mixed ...$values): multiple_t
+{
+    return new multiple_t(...$values);
+}
+
 function int8_array(Int8Type|int8_t|int ...$values): int8_array_t
 {
     return new int8_array_t(...$values);
@@ -146,7 +152,7 @@ function size_array(size_t|int ...$values): size_array_t
     return new size_array_t(...$values);
 }
 
-function multiple(mixed ...$values): multiple_t
+function multiple_array(multiple_t ...$values): multiple_array_t
 {
-    return new multiple_t(...$values);
+    return new multiple_array_t(...$values);
 }
