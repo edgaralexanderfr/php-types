@@ -30,8 +30,13 @@ try {
     // Create the default stub from main.php entrypoint
     // $defaultStub = $phar->createDefaultStub('bin/php-types.php');
 
+    // Copy files into tmp folder
+    // This is not cross-platform... but it works...
+    `cp -r src tmp/src`;
+    `cp autoload.php tmp/autoload.php`;
+
     // Add the rest of the apps files
-    $phar->buildFromDirectory(__DIR__);
+    $phar->buildFromDirectory(__DIR__ . '/tmp');
 
     // Customize the stub to add the shebang
     // $stub = "#!/usr/bin/env php \n" . $defaultStub;
@@ -47,6 +52,10 @@ try {
 
     # Make the file executable
     chmod(__DIR__ . "/{$pharFile}", 0770);
+
+    // Delete files from tmp directory
+    `rm tmp/autoload.php`;
+    `rm -rf tmp/src`;
 
     echo "$pharFile successfully created" . PHP_EOL;
 } catch (Exception $e) {

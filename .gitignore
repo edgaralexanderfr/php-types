@@ -2,4 +2,6 @@
 !/dev/composer.json
 /examples/composer.lock
 /examples/vendor/
+/tmp/**/*
+!/tmp/.gitkeep
 /vendor/
