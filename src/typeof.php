@@ -27,7 +27,9 @@ use PHPTypes\Primitive\Int8Array;
 use PHPTypes\Primitive\Int8Type;
 use PHPTypes\Primitive\int_array_t;
 use PHPTypes\Primitive\IntArray;
+use PHPTypes\Primitive\multiple_array_t;
 use PHPTypes\Primitive\multiple_t;
+use PHPTypes\Primitive\MultipleArray;
 use PHPTypes\Primitive\MultipleType;
 use PHPTypes\Primitive\object_array_t;
 use PHPTypes\Primitive\object_t;
@@ -39,7 +41,9 @@ use PHPTypes\Primitive\SizeArray;
 use PHPTypes\Primitive\SizeType;
 use PHPTypes\Primitive\string_array_t;
 use PHPTypes\Primitive\StringArray;
+use PHPTypes\Primitive\tuple_array_t;
 use PHPTypes\Primitive\tuple_t;
+use PHPTypes\Primitive\TupleArray;
 use PHPTypes\Primitive\TupleType;
 use PHPTypes\Primitive\uchar_array_t;
 use PHPTypes\Primitive\uchar_t;
@@ -90,6 +94,7 @@ use PHPTypes\Primitive\UInt8Type;
  * - `"uchar_array"`
  * - `"size_array"`
  * - `"multiple_array"`
+ * - `"tuple_array"`
  */
 function typeof(mixed $var): string
 {
@@ -193,8 +198,12 @@ function typeof(mixed $var): string
         return 'size_array';
     }
 
-    if ($var instanceof multiple_t || $var instanceof MultipleType) {
+    if ($var instanceof multiple_array_t || $var instanceof MultipleArray) {
         return 'multiple_array';
+    }
+
+    if ($var instanceof tuple_array_t || $var instanceof TupleArray) {
+        return 'tuple_array';
     }
 
     return gettype($var);

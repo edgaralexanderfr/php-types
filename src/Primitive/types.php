@@ -32,6 +32,7 @@ class char_array_t extends CharArray {};
 class uchar_array_t extends UCharArray {};
 class size_array_t extends SizeArray {};
 class multiple_array_t extends MultipleArray {};
+class tuple_array_t extends TupleArray {};
 
 function object(array|stdClass $values): object_t
 {
@@ -161,4 +162,9 @@ function size_array(size_t|int ...$values): size_array_t
 function multiple_array(multiple_t ...$values): multiple_array_t
 {
     return new multiple_array_t(...$values);
+}
+
+function tuple_array(TupleType|tuple_t ...$values): tuple_array_t
+{
+    return new tuple_array_t(...$values);
 }
