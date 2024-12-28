@@ -7,7 +7,7 @@ namespace PHPTypes\Primitive;
 use \ArrayIterator;
 use \TypeError;
 
-class MultipleType extends ArrayIterator
+class TupleType extends ArrayIterator
 {
     public function __construct(mixed ...$values)
     {

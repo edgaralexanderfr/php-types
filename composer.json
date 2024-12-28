@@ -15,7 +15,8 @@
         "files": [
             "src/main.php",
             "src/Primitive/types.php",
-            "src/typedef.php"
+            "src/typedef.php",
+            "src/typeof.php"
         ],
         "psr-4": {
             "PHPTypes\\": "src/"

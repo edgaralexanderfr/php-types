@@ -6,31 +6,32 @@ namespace PHPTypes\Primitive;
 
 use stdClass;
 
-class object_t extends ObjectType {}
-class bool_array_t extends BoolArray {}
-class int_array_t extends IntArray {}
-class double_array_t extends DoubleArray {}
-class float_array_t extends FloatArray {}
-class string_array_t extends StringArray {}
-class object_array_t extends ObjectArray {}
-class int8_t extends Int8Type {}
-class uint8_t extends UInt8Type {}
+class object_t extends ObjectType {};
+class bool_array_t extends BoolArray {};
+class int_array_t extends IntArray {};
+class double_array_t extends DoubleArray {};
+class float_array_t extends FloatArray {};
+class string_array_t extends StringArray {};
+class object_array_t extends ObjectArray {};
+class int8_t extends Int8Type {};
+class uint8_t extends UInt8Type {};
 class byte_t extends uint8_t {};
-class int16_t extends Int16Type {}
-class uint16_t extends UInt16Type {}
-class char_t extends CharType {}
-class uchar_t extends UCharType {}
-class size_t extends SizeType {}
-class multiple_t extends MultipleType {}
-class int8_array_t extends Int8Array {}
-class uint8_array_t extends UInt8Array {}
-class byte_array_t extends ByteArray {}
-class int16_array_t extends Int16Array {}
-class uint16_array_t extends UInt16Array {}
-class char_array_t extends CharArray {}
-class uchar_array_t extends UCharArray {}
-class size_array_t extends SizeArray {}
-class multiple_array_t extends MultipleArray {}
+class int16_t extends Int16Type {};
+class uint16_t extends UInt16Type {};
+class char_t extends CharType {};
+class uchar_t extends UCharType {};
+class size_t extends SizeType {};
+class multiple_t extends MultipleType {};
+class tuple_t extends TupleType {};
+class int8_array_t extends Int8Array {};
+class uint8_array_t extends UInt8Array {};
+class byte_array_t extends ByteArray {};
+class int16_array_t extends Int16Array {};
+class uint16_array_t extends UInt16Array {};
+class char_array_t extends CharArray {};
+class uchar_array_t extends UCharArray {};
+class size_array_t extends SizeArray {};
+class multiple_array_t extends MultipleArray {};
 
 function object(array|stdClass $values): object_t
 {
@@ -110,6 +111,11 @@ function size(int $value): size_t
 function multiple(mixed ...$values): multiple_t
 {
     return new multiple_t(...$values);
+}
+
+function tuple(mixed ...$values): tuple_t
+{
+    return new tuple_t(...$values);
 }
 
 function int8_array(Int8Type|int8_t|int ...$values): int8_array_t
