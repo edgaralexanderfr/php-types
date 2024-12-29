@@ -11,13 +11,14 @@ use function PHPTypes\Primitive\size;
 class SizeArray extends ArrayObject
 {
     protected array $object = [
+        SizeType::class => SizeType::class,
         size_t::class => size_t::class,
     ];
 
-    public function __construct(size_t|int ...$values)
+    public function __construct(SizeType|size_t|int ...$values)
     {
         parent::__construct(
-            array_map(fn($value) => ($value instanceof size_t) ? $value : size($value), $values)
+            array_map(fn($value) => ($value instanceof SizeType || $value instanceof size_t) ? $value : size($value), $values)
         );
     }
 }

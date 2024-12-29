@@ -11,13 +11,14 @@ use function PHPTypes\Primitive\char;
 class CharArray extends ArrayObject implements \Stringable
 {
     protected array $object = [
+        CharType::class => CharType::class,
         char_t::class => char_t::class,
     ];
 
-    public function __construct(char_t|string|int ...$values)
+    public function __construct(CharType|char_t|string|int ...$values)
     {
         parent::__construct(
-            array_map(fn($value) => ($value instanceof char_t) ? $value : char($value), $values)
+            array_map(fn($value) => ($value instanceof CharType || $value instanceof char_t) ? $value : char($value), $values)
         );
     }
 

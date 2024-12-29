@@ -6,8 +6,6 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayObject;
 
-use function PHPTypes\Primitive\multiple;
-
 class MultipleArray extends ArrayObject
 {
     protected array $object = [
@@ -15,10 +13,8 @@ class MultipleArray extends ArrayObject
         multiple_t::class => multiple_t::class,
     ];
 
-    public function __construct(multiple_t ...$values)
+    public function __construct(MultipleType|multiple_t ...$values)
     {
-        parent::__construct(
-            array_map(fn($value) => ($value instanceof MultipleType || $value instanceof multiple_t) ? $value : multiple($value), $values)
-        );
+        parent::__construct($values);
     }
 }

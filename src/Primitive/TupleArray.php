@@ -6,8 +6,6 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayObject;
 
-use function PHPTypes\Primitive\tuple;
-
 class TupleArray extends ArrayObject
 {
     protected array $object = [
@@ -17,8 +15,6 @@ class TupleArray extends ArrayObject
 
     public function __construct(TupleType|tuple_t ...$values)
     {
-        parent::__construct(
-            array_map(fn($value) => ($value instanceof TupleType || $value instanceof tuple_t) ? $value : tuple($value), $values)
-        );
+        parent::__construct($values);
     }
 }

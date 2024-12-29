@@ -144,22 +144,22 @@ function uint16_array(UInt16Type|uint16_t|int ...$values): uint16_array_t
     return new uint16_array_t(...$values);
 }
 
-function char_array(char_t|string|int ...$values): char_array_t
+function char_array(CharType|char_t|string|int ...$values): char_array_t
 {
     return new char_array_t(...$values);
 }
 
-function uchar_array(uchar_t|string|int ...$values): uchar_array_t
+function uchar_array(UCharType|uchar_t|string|int ...$values): uchar_array_t
 {
     return new uchar_array_t(...$values);
 }
 
-function size_array(size_t|int ...$values): size_array_t
+function size_array(SizeType|size_t|int ...$values): size_array_t
 {
     return new size_array_t(...$values);
 }
 
-function multiple_array(multiple_t ...$values): multiple_array_t
+function multiple_array(MultipleType|multiple_t ...$values): multiple_array_t
 {
     return new multiple_array_t(...$values);
 }
