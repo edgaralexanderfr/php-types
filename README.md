@@ -34,6 +34,9 @@
 - - [3.5.1 Defining a `main` function](#defining-a-main-function)
 - - [3.5.2 `main` function arguments](#main-function-arguments)
 - - [3.5.3 Ignore `main` function call](#ignore-main-function-call)
+- [3.6 Defining custom types](#defining-custom-types)
+- - [3.6.1 Defining custom arrays](#defining-custom-arrays)
+- - [3.6.2 `typedef()`](#typedef)
 
 <a name="requirements"></a>
 
@@ -634,3 +637,150 @@ This is executed
 ```
 
 In case you define the `PHPTYPES_IGNORE_MAIN` `constant` after including the library or the autoload file, the `register_shutdown_function` _will still be called_, but the `main` `function` will still be ignored.
+
+<a name="defining-custom-types"></a>
+
+### Defining custom types
+
+<a name="defining-custom-arrays"></a>
+
+#### Defining custom arrays
+
+To define custom arrays, you can create a new `class` that extends `PHPTypes\ArrayObject` and implements a typed constructor for such purpose, e.g:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\ArrayObject;
+
+class User
+{
+    public function __construct(
+        public readonly int $id,
+        public readonly string $name,
+    ) {}
+}
+
+class UserArray extends ArrayObject
+{
+    public function __construct(User ...$values)
+    {
+        parent::__construct($values);
+    }
+}
+
+$users = new UserArray(
+    new User(1, 'John'),
+    new User(2, 'Doe'),
+);
+
+foreach ($users as $user) {
+    echo "{$user->id} => {$user->name}" . PHP_EOL;
+}
+```
+
+```bash
+php examples/typedef_1.php
+1 => John
+2 => Doe
+```
+
+<a name="typedef"></a>
+
+#### `typedef()`
+
+It is very common that we may need to define multiple arrays for multiple classes from our project/app, to do so, we can simplify the previous example with the usage of the `typedef` `function`, just like this:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\ArrayObject; // Notice the usage of `ArrayObject`
+
+use function PHPTypes\typedef;
+
+class User
+{
+    public function __construct(
+        public readonly int $id,
+        public readonly string $name,
+    ) {}
+}
+
+typedef('array', 'User', 'UserArray');
+
+/**
+ * @disregard
+ * @var ArrayObject|User[]
+ */
+$users = new UserArray(
+    new User(1, 'John'),
+    new User(2, 'Doe'),
+);
+
+foreach ($users as $user) {
+    echo "{$user->id} => {$user->name}" . PHP_EOL;
+}
+```
+
+```bash
+php examples/typedef_2.php
+1 => John
+2 => Doe
+```
+
+Notice the usage of the `@disregard` and `@var` **phpDoc** tags to preserve the `array` treatment per `User` and recognize the acccess to all its properties and methods by our preferred text editor. We also conjunct the `@var` type definition with the `ArrayObject` type to recognize access to methods such as `count`, `hasAny`, `isEmpty`, `splice`, etc.
+
+In case our `User` `class` resides inside a specific `namespace`, we can specify the full path to the `namespace` when calling `typedef` to define the new `array` inside the same `namespace`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App;
+
+include 'vendor/autoload.php';
+
+use PHPTypes\ArrayObject; // Notice the usage of `ArrayObject`
+
+use function PHPTypes\typedef;
+
+class User
+{
+    public function __construct(
+        public readonly int $id,
+        public readonly string $name,
+    ) {}
+}
+
+typedef('array', 'App\User', 'UserArray');
+
+/**
+ * @disregard
+ * @var ArrayObject|User[]
+ */
+$users = new \App\UserArray(
+    new \App\User(1, 'John'),
+    new \App\User(2, 'Doe'),
+);
+
+foreach ($users as $user) {
+    echo "{$user->id} => {$user->name}" . PHP_EOL;
+}
+```
+
+```bash
+php examples/typedef_3.php
+1 => John
+2 => Doe
+```
+
+It is also recommended and a good practice to define custom types in a separate and dedicated file that can be accessed across our app, such as _types.php_
