@@ -6,8 +6,8 @@ include 'vendor/autoload.php';
 
 use PHPTypes\Primitive\object_array_t;
 
-use function PHPTypes\Primitive\object;
-use function PHPTypes\Primitive\object_array;
+use function PHPTypes\Primitive\object_t;
+use function PHPTypes\Primitive\object_array_t;
 
 function display(object_array_t $array): void
 {
@@ -16,16 +16,16 @@ function display(object_array_t $array): void
     }
 }
 
-$array = object_array(
-    object([
+$array = object_array_t(
+    object_t([
         'id' => 1,
         'name' => 'Charles Babbage',
     ]),
-    object([
+    object_t([
         'id' => 2,
         'name' => 'Alan Turing',
     ]),
-    object([
+    object_t([
         'id' => 3,
         'name' => 'Edsger Dijkstra',
     ]),

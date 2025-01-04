@@ -6,7 +6,7 @@ namespace PHPTypes;
 
 use \ArrayIterator;
 use \TypeError;
-use PHPTypes\Primitive\multiple_t;
+use PHPTypes\Primitive\multiple;
 
 use function PHPTypes\Primitive\multiple;
 
@@ -22,6 +22,7 @@ class ArrayObject extends ArrayIterator
     }
 
     #[\Override]
+    /** @disregard */
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if ($this->object && (($type = gettype($value)) != 'object' || !isset($this->object[$type = $value::class]))) {
@@ -33,11 +34,13 @@ class ArrayObject extends ArrayIterator
         parent::offsetSet($offset, $value);
     }
 
+    /** @disregard */
     public function isEmpty(): bool
     {
         return $this->count() == 0;
     }
 
+    /** @disregard */
     public function hasAny(): bool
     {
         return $this->count() > 0;
@@ -54,8 +57,10 @@ class ArrayObject extends ArrayIterator
      *   1 => new ArrayIterator($extracted_elements = array()), // An `ArrayIterator|ArrayObject` of type `get_class($this)` consisting of the extracted elements.
      * ]);
      * ```
+     *
+     * @disregard
      */
-    public function splice(int $offset, ?int $length = null, mixed $replacement = []): multiple_t
+    public function splice(int $offset, ?int $length = null, mixed $replacement = []): multiple
     {
         $class = get_class($this);
         $array = (array) $this;
