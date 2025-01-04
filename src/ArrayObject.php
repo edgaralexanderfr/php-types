@@ -14,6 +14,13 @@ class ArrayObject extends ArrayIterator
 {
     protected array $object = [];
 
+    /** @disregard */
+    public int $length
+    {
+        /** @disregard */
+        get => $this->count();
+    }
+
     #[\Override]
     public function offsetSet(mixed $offset, mixed $value): void
     {
