@@ -4,56 +4,56 @@ declare(strict_types=1);
 
 namespace PHPTypes;
 
-use PHPTypes\Primitive\bool_array_t;
+use PHPTypes\Primitive\bool_array;
 use PHPTypes\Primitive\BoolArray;
-use PHPTypes\Primitive\byte_array_t;
-use PHPTypes\Primitive\byte_t;
+use PHPTypes\Primitive\byte_array;
+use PHPTypes\Primitive\byte;
 use PHPTypes\Primitive\ByteArray;
-use PHPTypes\Primitive\char_array_t;
-use PHPTypes\Primitive\char_t;
+use PHPTypes\Primitive\char_array;
+use PHPTypes\Primitive\char;
 use PHPTypes\Primitive\CharArray;
 use PHPTypes\Primitive\CharType;
-use PHPTypes\Primitive\double_array_t;
+use PHPTypes\Primitive\double_array;
 use PHPTypes\Primitive\DoubleArray;
-use PHPTypes\Primitive\float_array_t;
+use PHPTypes\Primitive\float_array;
 use PHPTypes\Primitive\FloatArray;
-use PHPTypes\Primitive\int16_array_t;
+use PHPTypes\Primitive\int16_array;
 use PHPTypes\Primitive\int16_t;
 use PHPTypes\Primitive\Int16Array;
 use PHPTypes\Primitive\Int16Type;
-use PHPTypes\Primitive\int8_array_t;
+use PHPTypes\Primitive\int8_array;
 use PHPTypes\Primitive\int8_t;
 use PHPTypes\Primitive\Int8Array;
 use PHPTypes\Primitive\Int8Type;
-use PHPTypes\Primitive\int_array_t;
+use PHPTypes\Primitive\int_array;
 use PHPTypes\Primitive\IntArray;
-use PHPTypes\Primitive\multiple_array_t;
-use PHPTypes\Primitive\multiple_t;
+use PHPTypes\Primitive\multiple_array;
+use PHPTypes\Primitive\multiple;
 use PHPTypes\Primitive\MultipleArray;
 use PHPTypes\Primitive\MultipleType;
 use PHPTypes\Primitive\object_array_t;
 use PHPTypes\Primitive\object_t;
 use PHPTypes\Primitive\ObjectArray;
 use PHPTypes\Primitive\ObjectType;
-use PHPTypes\Primitive\size_array_t;
+use PHPTypes\Primitive\size_array;
 use PHPTypes\Primitive\size_t;
 use PHPTypes\Primitive\SizeArray;
 use PHPTypes\Primitive\SizeType;
-use PHPTypes\Primitive\string_array_t;
+use PHPTypes\Primitive\string_array;
 use PHPTypes\Primitive\StringArray;
-use PHPTypes\Primitive\tuple_array_t;
-use PHPTypes\Primitive\tuple_t;
+use PHPTypes\Primitive\tuple_array;
+use PHPTypes\Primitive\tuple;
 use PHPTypes\Primitive\TupleArray;
 use PHPTypes\Primitive\TupleType;
-use PHPTypes\Primitive\uchar_array_t;
-use PHPTypes\Primitive\uchar_t;
+use PHPTypes\Primitive\uchar_array;
+use PHPTypes\Primitive\uchar;
 use PHPTypes\Primitive\UCharArray;
 use PHPTypes\Primitive\UCharType;
-use PHPTypes\Primitive\uint16_array_t;
+use PHPTypes\Primitive\uint16_array;
 use PHPTypes\Primitive\uint16_t;
 use PHPTypes\Primitive\UInt16Array;
 use PHPTypes\Primitive\UInt16Type;
-use PHPTypes\Primitive\uint8_array_t;
+use PHPTypes\Primitive\uint8_array;
 use PHPTypes\Primitive\uint8_t;
 use PHPTypes\Primitive\UInt8Array;
 use PHPTypes\Primitive\UInt8Type;
@@ -102,23 +102,23 @@ function typeof(mixed $var): string
         return 'object';
     }
 
-    if ($var instanceof bool_array_t || $var instanceof BoolArray) {
+    if ($var instanceof bool_array || $var instanceof BoolArray) {
         return 'bool_array';
     }
 
-    if ($var instanceof int_array_t || $var instanceof IntArray) {
+    if ($var instanceof int_array || $var instanceof IntArray) {
         return 'int_array';
     }
 
-    if ($var instanceof double_array_t || $var instanceof DoubleArray) {
+    if ($var instanceof double_array || $var instanceof DoubleArray) {
         return 'double_array';
     }
 
-    if ($var instanceof float_array_t || $var instanceof FloatArray) {
+    if ($var instanceof float_array || $var instanceof FloatArray) {
         return 'float_array';
     }
 
-    if ($var instanceof string_array_t || $var instanceof StringArray) {
+    if ($var instanceof string_array || $var instanceof StringArray) {
         return 'string_array';
     }
 
@@ -130,7 +130,7 @@ function typeof(mixed $var): string
         return 'int8_t';
     }
 
-    if ($var instanceof byte_t) {
+    if ($var instanceof byte) {
         return 'byte';
     }
 
@@ -146,11 +146,11 @@ function typeof(mixed $var): string
         return 'uint16_t';
     }
 
-    if ($var instanceof char_t || $var instanceof CharType) {
+    if ($var instanceof char || $var instanceof CharType) {
         return 'char';
     }
 
-    if ($var instanceof uchar_t || $var instanceof UCharType) {
+    if ($var instanceof uchar || $var instanceof UCharType) {
         return 'uchar';
     }
 
@@ -158,51 +158,51 @@ function typeof(mixed $var): string
         return 'size_t';
     }
 
-    if ($var instanceof multiple_t || $var instanceof MultipleType) {
+    if ($var instanceof multiple || $var instanceof MultipleType) {
         return 'multiple';
     }
 
-    if ($var instanceof tuple_t || $var instanceof TupleType) {
+    if ($var instanceof tuple || $var instanceof TupleType) {
         return 'tuple';
     }
 
-    if ($var instanceof int8_array_t || $var instanceof Int8Array) {
+    if ($var instanceof int8_array || $var instanceof Int8Array) {
         return 'int8_array';
     }
 
-    if ($var instanceof uint8_array_t || $var instanceof UInt8Array) {
+    if ($var instanceof uint8_array || $var instanceof UInt8Array) {
         return 'uint8_array';
     }
 
-    if ($var instanceof byte_array_t || $var instanceof ByteArray) {
+    if ($var instanceof byte_array || $var instanceof ByteArray) {
         return 'byte_array';
     }
 
-    if ($var instanceof int16_array_t || $var instanceof Int16Array) {
+    if ($var instanceof int16_array || $var instanceof Int16Array) {
         return 'int16_array';
     }
 
-    if ($var instanceof uint16_array_t || $var instanceof UInt16Array) {
+    if ($var instanceof uint16_array || $var instanceof UInt16Array) {
         return 'uint16_array';
     }
 
-    if ($var instanceof char_array_t || $var instanceof CharArray) {
+    if ($var instanceof char_array || $var instanceof CharArray) {
         return 'char_array';
     }
 
-    if ($var instanceof uchar_array_t || $var instanceof UCharArray) {
+    if ($var instanceof uchar_array || $var instanceof UCharArray) {
         return 'uchar_array';
     }
 
-    if ($var instanceof size_array_t || $var instanceof SizeArray) {
+    if ($var instanceof size_array || $var instanceof SizeArray) {
         return 'size_array';
     }
 
-    if ($var instanceof multiple_array_t || $var instanceof MultipleArray) {
+    if ($var instanceof multiple_array || $var instanceof MultipleArray) {
         return 'multiple_array';
     }
 
-    if ($var instanceof tuple_array_t || $var instanceof TupleArray) {
+    if ($var instanceof tuple_array || $var instanceof TupleArray) {
         return 'tuple_array';
     }
 

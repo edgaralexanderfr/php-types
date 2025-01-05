@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayObject;
 
-use function PHPTypes\Primitive\uint8;
+use function PHPTypes\Primitive\uint8_t;
 
 class UInt8Array extends ArrayObject
 {
@@ -18,7 +18,7 @@ class UInt8Array extends ArrayObject
     public function __construct(UInt8Type|uint8_t|int ...$values)
     {
         parent::__construct(
-            array_map(fn($value) => ($value instanceof UInt8Type || $value instanceof uint8_t) ? $value : uint8($value), $values)
+            array_map(fn($value) => ($value instanceof UInt8Type || $value instanceof uint8_t) ? $value : uint8_t($value), $values)
         );
     }
 }

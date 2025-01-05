@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayObject;
 
-use function PHPTypes\Primitive\size;
+use function PHPTypes\Primitive\size_t;
 
 class SizeArray extends ArrayObject
 {
@@ -18,7 +18,7 @@ class SizeArray extends ArrayObject
     public function __construct(SizeType|size_t|int ...$values)
     {
         parent::__construct(
-            array_map(fn($value) => ($value instanceof SizeType || $value instanceof size_t) ? $value : size($value), $values)
+            array_map(fn($value) => ($value instanceof SizeType || $value instanceof size_t) ? $value : size_t($value), $values)
         );
     }
 }

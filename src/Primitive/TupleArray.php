@@ -10,10 +10,10 @@ class TupleArray extends ArrayObject
 {
     protected array $object = [
         TupleType::class => TupleType::class,
-        tuple_t::class => tuple_t::class,
+        tuple::class => tuple::class,
     ];
 
-    public function __construct(TupleType|tuple_t ...$values)
+    public function __construct(TupleType|tuple ...$values)
     {
         parent::__construct($values);
     }

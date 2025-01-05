@@ -14,13 +14,6 @@ class ArrayObject extends ArrayIterator
 {
     protected array $object = [];
 
-    /** @disregard */
-    public int $length
-    {
-        /** @disregard */
-        get => $this->count();
-    }
-
     #[\Override]
     /** @disregard */
     public function offsetSet(mixed $offset, mixed $value): void
@@ -67,5 +60,12 @@ class ArrayObject extends ArrayIterator
         $extracted_elements = array_splice($array, $offset, $length, $replacement);
 
         return multiple(new $class(...$array), new $class(...$extracted_elements));
+    }
+
+    /** @disregard */
+    public int $length
+    {
+        /** @disregard */
+        get => $this->count();
     }
 }

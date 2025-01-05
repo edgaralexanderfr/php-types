@@ -14,13 +14,6 @@ class ArrayType extends ArrayIterator
 {
     protected ?string $type = null;
 
-    /** @disregard */
-    public int $length
-    {
-        /** @disregard */
-        get => $this->count();
-    }
-
     #[\Override]
     /** @disregard */
     public function offsetSet(mixed $offset, mixed $value): void
@@ -47,7 +40,6 @@ class ArrayType extends ArrayIterator
     }
 
     /**
-     * @disregard
      * Where:
      *
      * ```php
@@ -58,6 +50,8 @@ class ArrayType extends ArrayIterator
      *   1 => new ArrayIterator($extracted_elements = array()), // An `ArrayIterator|ArrayObject` of type `get_class($this)` consisting of the extracted elements.
      * ]);
      * ```
+     *
+     * @disregard
      */
     public function splice(int $offset, ?int $length = null, mixed $replacement = []): multiple
     {
@@ -66,5 +60,12 @@ class ArrayType extends ArrayIterator
         $extracted_elements = array_splice($array, $offset, $length, $replacement);
 
         return multiple(new $class(...$array), new $class(...$extracted_elements));
+    }
+
+    /** @disregard */
+    public int $length
+    {
+        /** @disregard */
+        get => $this->count();
     }
 }

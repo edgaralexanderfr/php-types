@@ -6,7 +6,7 @@ namespace PHPTypes\Primitive;
 
 use PHPTypes\ArrayObject;
 
-use function PHPTypes\Primitive\int16;
+use function PHPTypes\Primitive\int16_t;
 
 class Int16Array extends ArrayObject
 {
@@ -18,7 +18,7 @@ class Int16Array extends ArrayObject
     public function __construct(Int16Type|int16_t|int ...$values)
     {
         parent::__construct(
-            array_map(fn($value) => ($value instanceof Int16Type || $value instanceof int16_t) ? $value : int16($value), $values)
+            array_map(fn($value) => ($value instanceof Int16Type || $value instanceof int16_t) ? $value : int16_t($value), $values)
         );
     }
 }
