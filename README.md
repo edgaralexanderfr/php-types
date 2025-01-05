@@ -109,7 +109,7 @@ include 'vendor/autoload.php';
 
 use PHPTypes\Primitive\object_t;
 
-use function PHPTypes\Primitive\object;
+use function PHPTypes\Primitive\object_t;
 
 function display(object_t $object): void
 {
@@ -117,16 +117,16 @@ function display(object_t $object): void
     echo $object->json() . PHP_EOL;
 }
 
-$object = object([
+$object = object_t([
     "name" => "Ford Mustang GT",
     "brand" => "Ford",
     "category" => "Muscle Car",
     "gas" => 0.8,
-    "engine" => object([
+    "engine" => object_t([
         "type" => "V8",
         "rpm" => 750,
     ]),
-    "transmission" => object([
+    "transmission" => object_t([
         "type" => "manual",
         "gear" => 1,
         "gears" => ["R", "N", "1", "2", "3", "4", "5", "6"],
@@ -153,11 +153,11 @@ declare(strict_types=1);
 
 include 'vendor/autoload.php';
 
-use PHPTypes\Primitive\bool_array_t;
+use PHPTypes\Primitive\bool_array;
 
 use function PHPTypes\Primitive\bool_array;
 
-function display(bool_array_t $array): void
+function display(bool_array $array): void
 {
     foreach ($array as $value) {
         echo $value . PHP_EOL;
@@ -186,11 +186,11 @@ declare(strict_types=1);
 
 include 'vendor/autoload.php';
 
-use PHPTypes\Primitive\int_array_t;
+use PHPTypes\Primitive\int_array;
 
 use function PHPTypes\Primitive\int_array;
 
-function display(int_array_t $array): void
+function display(int_array $array): void
 {
     foreach ($array as $value) {
         echo $value . PHP_EOL;
@@ -219,11 +219,11 @@ declare(strict_types=1);
 
 include 'vendor/autoload.php';
 
-use PHPTypes\Primitive\float_array_t;
+use PHPTypes\Primitive\float_array;
 
 use function PHPTypes\Primitive\float_array;
 
-function display(float_array_t $array): void
+function display(float_array $array): void
 {
     foreach ($array as $value) {
         echo $value . PHP_EOL;
@@ -252,11 +252,11 @@ declare(strict_types=1);
 
 include 'vendor/autoload.php';
 
-use PHPTypes\Primitive\string_array_t;
+use PHPTypes\Primitive\string_array;
 
 use function PHPTypes\Primitive\string_array;
 
-function display(string_array_t $array): void
+function display(string_array $array): void
 {
     foreach ($array as $value) {
         echo $value . PHP_EOL;
@@ -287,8 +287,8 @@ include 'vendor/autoload.php';
 
 use PHPTypes\Primitive\object_array_t;
 
-use function PHPTypes\Primitive\object;
-use function PHPTypes\Primitive\object_array;
+use function PHPTypes\Primitive\object_t;
+use function PHPTypes\Primitive\object_array_t;
 
 function display(object_array_t $array): void
 {
@@ -297,16 +297,16 @@ function display(object_array_t $array): void
     }
 }
 
-$array = object_array(
-    object([
+$array = object_array_t(
+    object_t([
         'id' => 1,
         'name' => 'Charles Babbage',
     ]),
-    object([
+    object_t([
         'id' => 2,
         'name' => 'Alan Turing',
     ]),
-    object([
+    object_t([
         'id' => 3,
         'name' => 'Edsger Dijkstra',
     ]),
@@ -478,7 +478,7 @@ print_r($array);
 php examples/type_error.php
 Element must be of type integer, string given, called
 Element must be of type integer, string given, called
-PHPTypes\Primitive\int_array_t Object
+PHPTypes\Primitive\int_array Object
 (
     [type:protected] => integer
     [storage:ArrayIterator:private] => Array
@@ -570,9 +570,9 @@ declare(strict_types=1);
 
 include 'vendor/autoload.php';
 
-use PHPTypes\Primitive\string_array_t;
+use PHPTypes\Primitive\string_array;
 
-function main(int $argc, string_array_t $argv): int
+function main(int $argc, string_array $argv): int
 {
     printf("argc: %d\n", $argc);
     printf("argv: %s\n", print_r($argv, true));
@@ -586,7 +586,7 @@ function main(int $argc, string_array_t $argv): int
 ```bash
 php examples/main_args.php
 argc: 1
-argv: PHPTypes\Primitive\string_array_t Object
+argv: PHPTypes\Primitive\string_array Object
 (
     [type:protected] => string
     [storage:ArrayIterator:private] => Array
