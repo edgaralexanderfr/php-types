@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace PHPTypes\Primitive;
 
+use ArrayAccess;
+use JsonSerializable;
 use stdClass;
 use Stringable;
 
-class JSONType extends stdClass implements Stringable, JSONInterface
+class JSONType extends stdClass implements ArrayAccess, JsonSerializable, Stringable, JSONInterface
 {
     public function __construct(array|stdClass|string $values = [])
     {
@@ -18,12 +20,41 @@ class JSONType extends stdClass implements Stringable, JSONInterface
         $class = get_class($this);
 
         foreach ($values as $property => $value) {
-            if ((is_array($value) && !array_is_list($value)) || $value instanceof stdClass) {
+            if (is_array($value) || $value instanceof stdClass) {
                 $this->{$property} = new $class($value);
             } else {
                 $this->{$property} = $value;
             }
         }
+    }
+
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->{$offset});
+    }
+
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->{$offset};
+    }
+
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        $this->{$offset} = $value;
+    }
+
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->{$offset});
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        if (array_is_list($array = (array) $this)) {
+            return $array;
+        }
+
+        return $this;
     }
 
     public function __toString(): string
