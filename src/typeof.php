@@ -27,6 +27,8 @@ use PHPTypes\Primitive\Int8Array;
 use PHPTypes\Primitive\Int8Type;
 use PHPTypes\Primitive\int_array;
 use PHPTypes\Primitive\IntArray;
+use PHPTypes\Primitive\json;
+use PHPTypes\Primitive\JSONType;
 use PHPTypes\Primitive\multiple_array;
 use PHPTypes\Primitive\multiple;
 use PHPTypes\Primitive\MultipleArray;
@@ -85,6 +87,7 @@ use PHPTypes\Primitive\UInt8Type;
  * - `"size_t"`
  * - `"multiple"`
  * - `"tuple"`
+ * - `"json"`
  * - `"int8_array"`
  * - `"uint8_array"`
  * - `"byte_array"`
@@ -164,6 +167,10 @@ function typeof(mixed $var): string
 
     if ($var instanceof tuple || $var instanceof TupleType) {
         return 'tuple';
+    }
+
+    if ($var instanceof json || $var instanceof JSONType) {
+        return 'json';
     }
 
     if ($var instanceof int8_array || $var instanceof Int8Array) {

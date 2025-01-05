@@ -23,6 +23,7 @@ class uchar extends UCharType {};
 class size_t extends SizeType {};
 class multiple extends MultipleType {};
 class tuple extends TupleType {};
+class json extends JSONType {};
 class int8_array extends Int8Array {};
 class uint8_array extends UInt8Array {};
 class byte_array extends ByteArray {};
@@ -117,6 +118,11 @@ function multiple(mixed ...$values): multiple
 function tuple(mixed ...$values): tuple
 {
     return new tuple(...$values);
+}
+
+function json(array|stdClass|string $values): json
+{
+    return new json($values);
 }
 
 function int8_array(Int8Type|int8_t|int ...$values): int8_array
