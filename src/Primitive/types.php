@@ -34,6 +34,7 @@ class uchar_array extends UCharArray {};
 class size_array extends SizeArray {};
 class multiple_array extends MultipleArray {};
 class tuple_array extends TupleArray {};
+class json_array extends JSONArray {};
 
 function object_t(array|stdClass $values): object_t
 {
@@ -173,4 +174,9 @@ function multiple_array(MultipleType|multiple ...$values): multiple_array
 function tuple_array(TupleType|tuple ...$values): tuple_array
 {
     return new tuple_array(...$values);
+}
+
+function json_array(JSONType|json ...$values): json_array
+{
+    return new json_array(...$values);
 }

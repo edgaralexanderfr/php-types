@@ -28,6 +28,8 @@ use PHPTypes\Primitive\Int8Type;
 use PHPTypes\Primitive\int_array;
 use PHPTypes\Primitive\IntArray;
 use PHPTypes\Primitive\json;
+use PHPTypes\Primitive\json_array;
+use PHPTypes\Primitive\JSONArray;
 use PHPTypes\Primitive\JSONType;
 use PHPTypes\Primitive\multiple_array;
 use PHPTypes\Primitive\multiple;
@@ -98,6 +100,7 @@ use PHPTypes\Primitive\UInt8Type;
  * - `"size_array"`
  * - `"multiple_array"`
  * - `"tuple_array"`
+ * - `"json_array"`
  */
 function typeof(mixed $var): string
 {
@@ -211,6 +214,10 @@ function typeof(mixed $var): string
 
     if ($var instanceof tuple_array || $var instanceof TupleArray) {
         return 'tuple_array';
+    }
+
+    if ($var instanceof json_array || $var instanceof JSONArray) {
+        return 'json_array';
     }
 
     return gettype($var);
