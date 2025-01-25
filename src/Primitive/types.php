@@ -23,7 +23,6 @@ class uchar extends UCharType {};
 class size_t extends SizeType {};
 class multiple extends MultipleType {};
 class tuple extends TupleType {};
-class json extends JSONType {};
 class int8_array extends Int8Array {};
 class uint8_array extends UInt8Array {};
 class byte_array extends ByteArray {};
@@ -34,7 +33,6 @@ class uchar_array extends UCharArray {};
 class size_array extends SizeArray {};
 class multiple_array extends MultipleArray {};
 class tuple_array extends TupleArray {};
-class json_array extends JSONArray {};
 
 function object_t(array|stdClass $values): object_t
 {
@@ -121,11 +119,6 @@ function tuple(mixed ...$values): tuple
     return new tuple(...$values);
 }
 
-function json(array|stdClass|string $values): json
-{
-    return new json($values);
-}
-
 function int8_array(Int8Type|int8_t|int ...$values): int8_array
 {
     return new int8_array(...$values);
@@ -174,9 +167,4 @@ function multiple_array(MultipleType|multiple ...$values): multiple_array
 function tuple_array(TupleType|tuple ...$values): tuple_array
 {
     return new tuple_array(...$values);
-}
-
-function json_array(JSONType|json ...$values): json_array
-{
-    return new json_array(...$values);
 }

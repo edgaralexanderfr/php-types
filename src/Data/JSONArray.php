@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Data;
+
+use Stringable;
 
 use PHPTypes\ArrayObject;
-use Stringable;
+use PHPTypes\Primitive\JSONInterface;
 
 class JSONArray extends ArrayObject implements Stringable, JSONInterface
 {

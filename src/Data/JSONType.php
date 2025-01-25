@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Data;
 
 use ArrayAccess;
 use JsonSerializable;
 use stdClass;
 use Stringable;
+
+use PHPTypes\Primitive\JSONInterface;
 
 class JSONType extends stdClass implements ArrayAccess, JsonSerializable, Stringable, JSONInterface
 {

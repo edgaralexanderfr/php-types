@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace PHPTypes;
 
+use PHPTypes\Data\json;
+use PHPTypes\Data\json_array;
+use PHPTypes\Data\JSONArray;
+use PHPTypes\Data\JSONType;
 use PHPTypes\Primitive\bool_array;
 use PHPTypes\Primitive\BoolArray;
 use PHPTypes\Primitive\byte_array;
@@ -27,10 +31,6 @@ use PHPTypes\Primitive\Int8Array;
 use PHPTypes\Primitive\Int8Type;
 use PHPTypes\Primitive\int_array;
 use PHPTypes\Primitive\IntArray;
-use PHPTypes\Primitive\json;
-use PHPTypes\Primitive\json_array;
-use PHPTypes\Primitive\JSONArray;
-use PHPTypes\Primitive\JSONType;
 use PHPTypes\Primitive\multiple_array;
 use PHPTypes\Primitive\multiple;
 use PHPTypes\Primitive\MultipleArray;
