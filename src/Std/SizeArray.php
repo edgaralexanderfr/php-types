@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Std;
 
 use PHPTypes\ArrayObject;
-
-use function PHPTypes\Primitive\size_t;
 
 class SizeArray extends ArrayObject
 {

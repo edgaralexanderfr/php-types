@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Std;
 
 use PHPTypes\IntType;
 
-class UInt8Type extends IntType
+class Int8Type extends IntType
 {
     /** @disregard */
     public int $value
@@ -22,12 +22,16 @@ class UInt8Type extends IntType
 
     protected function setValue(int $value): void
     {
-        if ($value >= 256) {
+        if ($value >= 128) {
+            $value += 128;
             $mul = (int) floor(abs($value / 256));
             $value -= 256 * $mul;
-        } else if ($value < 0) {
+            $value -= 128;
+        } else if ($value < -128) {
+            $value += 128;
             $mul = (int) ceil(abs($value / 256));
             $value += 256 * $mul;
+            $value -= 128;
         }
 
         $this->val = $value;

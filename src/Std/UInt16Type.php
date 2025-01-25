@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Std;
 
 use PHPTypes\IntType;
 
-class Int16Type extends IntType
+class UInt16Type extends IntType
 {
     /** @disregard */
     public int $value
@@ -22,16 +22,12 @@ class Int16Type extends IntType
 
     protected function setValue(int $value): void
     {
-        if ($value >= 32768) {
-            $value += 32768;
+        if ($value >= 65536) {
             $mul = (int) floor(abs($value / 65536));
             $value -= 65536 * $mul;
-            $value -= 32768;
-        } else if ($value < -32768) {
-            $value += 32768;
+        } else if ($value < 0) {
             $mul = (int) ceil(abs($value / 65536));
             $value += 65536 * $mul;
-            $value -= 32768;
         }
 
         $this->val = $value;

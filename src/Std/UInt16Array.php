@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Std;
 
 use PHPTypes\ArrayObject;
-
-use function PHPTypes\Primitive\uint16_t;
 
 class UInt16Array extends ArrayObject
 {
