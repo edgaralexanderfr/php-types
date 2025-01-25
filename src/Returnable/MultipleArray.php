@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PHPTypes\Primitive;
+namespace PHPTypes\Returnable;
 
 use PHPTypes\ArrayObject;
 

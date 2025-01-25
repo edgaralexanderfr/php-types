@@ -31,10 +31,6 @@ use PHPTypes\Primitive\Int8Array;
 use PHPTypes\Primitive\Int8Type;
 use PHPTypes\Primitive\int_array;
 use PHPTypes\Primitive\IntArray;
-use PHPTypes\Primitive\multiple_array;
-use PHPTypes\Primitive\multiple;
-use PHPTypes\Primitive\MultipleArray;
-use PHPTypes\Primitive\MultipleType;
 use PHPTypes\Primitive\object_array_t;
 use PHPTypes\Primitive\object_t;
 use PHPTypes\Primitive\ObjectArray;
@@ -61,6 +57,10 @@ use PHPTypes\Primitive\uint8_array;
 use PHPTypes\Primitive\uint8_t;
 use PHPTypes\Primitive\UInt8Array;
 use PHPTypes\Primitive\UInt8Type;
+use PHPTypes\Returnable\multiple_array;
+use PHPTypes\Returnable\multiple;
+use PHPTypes\Returnable\MultipleArray;
+use PHPTypes\Returnable\MultipleType;
 
 /**
  * - `"boolean"`

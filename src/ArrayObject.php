@@ -6,9 +6,9 @@ namespace PHPTypes;
 
 use \ArrayIterator;
 use \TypeError;
-use PHPTypes\Primitive\multiple;
+use PHPTypes\Returnable\multiple;
 
-use function PHPTypes\Primitive\multiple;
+use function PHPTypes\Returnable\multiple;
 
 class ArrayObject extends ArrayIterator
 {

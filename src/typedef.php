@@ -75,7 +75,7 @@ function define_multiple_type(string $name, string $multiple_name): void
     $args = implode(', ', $args_values);
 
     $code = <<<PHP
-        class {$multiple_name} extends \PHPTypes\Primitive\MultipleType
+        class {$multiple_name} extends \PHPTypes\Returnable\MultipleType
         {
             public function __construct({$params})
             {

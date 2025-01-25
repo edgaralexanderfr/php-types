@@ -16,6 +16,7 @@
             "src/main.php",
             "src/Data/types.php",
             "src/Primitive/types.php",
+            "src/Returnable/types.php",
             "src/typedef.php",
             "src/typeof.php"
         ],

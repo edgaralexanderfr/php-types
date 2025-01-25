@@ -23,5 +23,6 @@ spl_autoload_register('php_types_autoload');
 include __DIR__ . '/src/main.php';
 include __DIR__ . '/src/Data/types.php';
 include __DIR__ . '/src/Primitive/types.php';
+include __DIR__ . '/src/Returnable/types.php';
 include __DIR__ . '/src/typedef.php';
 include __DIR__ . '/src/typeof.php';
