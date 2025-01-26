@@ -24,19 +24,22 @@
 - - [3.1.4 `FloatArray`](#float-array)
 - - [3.1.5 `StringArray`](#string-array)
 - - [3.1.6 `ObjectArray`](#object-array)
-- [3.2 Data structures](#data-structures)
-- - [3.2.1 `HashSet`](#hash-set)
-- - [3.2.2 `IntHashSet`](#int-hash-set)
-- - [3.2.3 `StringHashSet`](#string-hash-set)
-- [3.3 Type errors](#type-errors)
-- [3.4 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
-- [3.5 The `main()` function](#the-main-function)
-- - [3.5.1 Defining a `main` function](#defining-a-main-function)
-- - [3.5.2 `main` function arguments](#main-function-arguments)
-- - [3.5.3 Ignore `main` function call](#ignore-main-function-call)
-- [3.6 Defining custom types](#defining-custom-types)
-- - [3.6.1 Defining custom arrays](#defining-custom-arrays)
-- - [3.6.2 `typedef()`](#typedef)
+- [3.2 Standard types](#standard-types)
+- - [3.2.1 Standard Ints](#standard-ints)
+- - [3.2.2 `size_t`](#size-t)
+- [3.3 Data structures](#data-structures)
+- - [3.3.1 `HashSet`](#hash-set)
+- - [3.3.2 `IntHashSet`](#int-hash-set)
+- - [3.3.3 `StringHashSet`](#string-hash-set)
+- [3.4 Type errors](#type-errors)
+- [3.5 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
+- [3.6 The `main()` function](#the-main-function)
+- - [3.6.1 Defining a `main` function](#defining-a-main-function)
+- - [3.6.2 `main` function arguments](#main-function-arguments)
+- - [3.6.3 Ignore `main` function call](#ignore-main-function-call)
+- [3.7 Defining custom types](#defining-custom-types)
+- - [3.7.1 Defining custom arrays](#defining-custom-arrays)
+- - [3.7.2 `typedef()`](#typedef)
 
 <a name="requirements"></a>
 
@@ -332,6 +335,90 @@ PHPTypes\Primitive\object_t Object
     [id] => 3
     [name] => Edsger Dijkstra
 )
+```
+
+<a name="standard-types"></a>
+
+### Standard types
+
+<a name="standard-ints"></a>
+
+#### Standard Ints
+
+Similarly to C, you make use of the standard types (as you would by including the _<stdint.h>_ standard library) to specify and maintain integer values in certain ranges:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Std\int16_t;
+use function PHPTypes\Std\int8_t;
+use function PHPTypes\Std\uint16_t;
+use function PHPTypes\Std\uint8_t;
+
+/** @var int8_t [-128...127] */
+$int8_t = int8_t(0);
+
+/** @var uint8_t [0...255] */
+$uint8_t = uint8_t(0);
+
+/** @var int16_t [-32768...32767] */
+$int16_t = int16_t(0);
+
+/** @var uint16_t [0...65535] */
+$uint16_t = uint16_t(0);
+
+// Assigning/accessing values:
+$int8_t->value = 256;
+$uint8_t->value = -128;
+$int16_t->value = 1024;
+$uint16_t->value = 2048;
+
+// Displaying new values
+// (Notice how the first 2 variables overflow):
+echo $int8_t . PHP_EOL;
+echo $uint8_t . PHP_EOL;
+echo $int16_t . PHP_EOL;
+echo $uint16_t . PHP_EOL;
+```
+
+```bash
+php examples/stdint.php
+0
+128
+1024
+2048
+```
+
+**Note:** keep in mind that these are only representative values and not actual low-level values where we're not saving space by storing specific bytes per integer.
+
+<a name="size-t"></a>
+
+#### `size_t`
+
+We can also make use of the `size_t` data type to store large numbers based on sizes, lengths, etc:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Std\size_t;
+
+/** @var size_t [0...PHP_INT_MAX] */
+$size_t = size_t(0);
+$size_t->value--;
+echo $size_t->value . PHP_EOL;
+```
+
+```bash
+php examples/size_t.php
+9223372036854775806
 ```
 
 <a name="data-structures"></a>
