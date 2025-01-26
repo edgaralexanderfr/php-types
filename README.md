@@ -26,6 +26,7 @@
 - - [3.2.4 `FloatArray`](#float-array)
 - - [3.2.5 `StringArray`](#string-array)
 - - [3.2.6 `ObjectArray`](#object-array)
+- - [3.2.7 Extra primitives arrays](#extra-primitives-arrays)
 - [3.3 Standard types](#standard-types)
 - - [3.3.1 Standard Ints](#standard-ints)
 - - [3.3.2 `size_t`](#size-t)
@@ -388,6 +389,70 @@ PHPTypes\Primitive\object_t Object
     [id] => 3
     [name] => Edsger Dijkstra
 )
+```
+
+<a name="extra-primitives-arrays"></a>
+
+#### Extra primitives arrays
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Primitive\byte_array;
+use function PHPTypes\Primitive\char_array;
+use function PHPTypes\Primitive\uchar_array;
+
+$byte_array = byte_array(0, 255, 0, 255);
+
+$char_array = char_array('H', 'e', 'l', 'l', 'o', '!');
+
+$uchar_array = uchar_array('a', 'b', 'c');
+
+var_dump($byte_array);
+
+// Notice how we can print out `char_array`s just like usual strings:
+echo $char_array . PHP_EOL;
+echo $uchar_array . PHP_EOL;
+```
+
+```bash
+php examples/primitives_arrays.php
+object(PHPTypes\Primitive\byte_array)#2 (2) {
+  ["object":protected]=>
+  array(1) {
+    ["PHPTypes\Primitive\byte"]=>
+    string(23) "PHPTypes\Primitive\byte"
+  }
+  ["storage":"ArrayIterator":private]=>
+  array(4) {
+    [0]=>
+    object(PHPTypes\Primitive\byte)#6 (1) {
+      ["val":protected]=>
+      int(0)
+    }
+    [1]=>
+    object(PHPTypes\Primitive\byte)#7 (1) {
+      ["val":protected]=>
+      int(255)
+    }
+    [2]=>
+    object(PHPTypes\Primitive\byte)#8 (1) {
+      ["val":protected]=>
+      int(0)
+    }
+    [3]=>
+    object(PHPTypes\Primitive\byte)#9 (1) {
+      ["val":protected]=>
+      int(255)
+    }
+  }
+}
+Hello!
+abc
 ```
 
 <a name="standard-types"></a>
