@@ -18,29 +18,31 @@
 2. [Installation](#installation)
 3. [Usage](#usage)
 - [3.1 Primitive types](#primitive-types)
-- - [3.1.1 `ObjectType`](#object-type)
-- - [3.1.2 `BoolArray`](#bool-array)
-- - [3.1.3 `IntArray`](#int-array)
-- - [3.1.4 `FloatArray`](#float-array)
-- - [3.1.5 `StringArray`](#string-array)
-- - [3.1.6 `ObjectArray`](#object-array)
-- [3.2 Standard types](#standard-types)
-- - [3.2.1 Standard Ints](#standard-ints)
-- - [3.2.2 `size_t`](#size-t)
-- - [3.2.3 Standard Ints Arrays](#standard-ints-arrays)
-- [3.3 Data structures](#data-structures)
-- - [3.3.1 `HashSet`](#hash-set)
-- - [3.3.2 `IntHashSet`](#int-hash-set)
-- - [3.3.3 `StringHashSet`](#string-hash-set)
-- [3.4 Type errors](#type-errors)
-- [3.5 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
-- [3.6 The `main()` function](#the-main-function)
-- - [3.6.1 Defining a `main` function](#defining-a-main-function)
-- - [3.6.2 `main` function arguments](#main-function-arguments)
-- - [3.6.3 Ignore `main` function call](#ignore-main-function-call)
-- [3.7 Defining custom types](#defining-custom-types)
-- - [3.7.1 Defining custom arrays](#defining-custom-arrays)
-- - [3.7.2 `typedef()`](#typedef)
+- - [3.1.1 Extending PHP primitive types](#extending-php-primitive-types)
+- - [3.1.2 `ObjectType`](#object-type)
+- [3.2 Primitive arrays](#primitive-arrays)
+- - [3.2.2 `BoolArray`](#bool-array)
+- - [3.2.3 `IntArray`](#int-array)
+- - [3.2.4 `FloatArray`](#float-array)
+- - [3.2.5 `StringArray`](#string-array)
+- - [3.2.6 `ObjectArray`](#object-array)
+- [3.3 Standard types](#standard-types)
+- - [3.3.1 Standard Ints](#standard-ints)
+- - [3.3.2 `size_t`](#size-t)
+- - [3.3.3 Standard Ints Arrays](#standard-ints-arrays)
+- [3.4 Data structures](#data-structures)
+- - [3.4.1 `HashSet`](#hash-set)
+- - [3.4.2 `IntHashSet`](#int-hash-set)
+- - [3.4.3 `StringHashSet`](#string-hash-set)
+- [3.5 Type errors](#type-errors)
+- [3.6 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
+- [3.7 The `main()` function](#the-main-function)
+- - [3.7.1 Defining a `main` function](#defining-a-main-function)
+- - [3.7.2 `main` function arguments](#main-function-arguments)
+- - [3.7.3 Ignore `main` function call](#ignore-main-function-call)
+- [3.8 Defining custom types](#defining-custom-types)
+- - [3.8.1 Defining custom arrays](#defining-custom-arrays)
+- - [3.8.2 `typedef()`](#typedef)
 
 <a name="requirements"></a>
 
@@ -100,6 +102,52 @@ print_r($message);
 
 ### Primitive types
 
+<a name="extending-php-primitive-types"></a>
+
+#### Extending PHP primitive types
+
+**PHP Types** adds some cool extra types that you can play around with:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Primitive\byte;
+use function PHPTypes\Primitive\char;
+use function PHPTypes\Primitive\uchar;
+
+/** @var byte (Extends from `uint8_t`). */
+$byte = byte(255);
+
+/** @var char */
+$char = char('c');
+
+/** @var uchar */
+$uchar = uchar('A');
+
+/** @var char */
+$string = char('Hello!'); // Since `char` can only store a single char, `$string` will be '!' and a PHP Warning will be notified.
+
+echo $byte . PHP_EOL;
+echo $char . PHP_EOL;
+echo $uchar . PHP_EOL;
+echo $string . PHP_EOL;
+```
+
+```bash
+php examples/primitives.php
+PHP Warning:  Character constant too long for its type
+
+Warning: Character constant too long for its type
+255
+c
+A
+!
+```
+
 <a name="object-type"></a>
 
 #### `ObjectType`
@@ -145,6 +193,10 @@ php examples/object.php
 Ford Mustang GT:
 {"name":"Ford Mustang GT","brand":"Ford","category":"Muscle Car","gas":0.8,"engine":{"type":"V8","rpm":750},"transmission":{"type":"manual","gear":1,"gears":["R","N","1","2","3","4","5","6"]}}
 ```
+
+<a name="primitive-arrays"></a>
+
+### Primitive arrays
 
 <a name="bool-array"></a>
 
