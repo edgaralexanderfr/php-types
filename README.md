@@ -37,13 +37,15 @@
 - - [3.4.3 `StringHashSet`](#string-hash-set)
 - [3.5 Type errors](#type-errors)
 - [3.6 `hasAny()` and `isEmpty()` methods](#has-any-is-empty)
-- [3.7 The `main()` function](#the-main-function)
-- - [3.7.1 Defining a `main` function](#defining-a-main-function)
-- - [3.7.2 `main` function arguments](#main-function-arguments)
-- - [3.7.3 Ignore `main` function call](#ignore-main-function-call)
-- [3.8 Defining custom types](#defining-custom-types)
-- - [3.8.1 Defining custom arrays](#defining-custom-arrays)
-- - [3.8.2 `typedef()`](#typedef)
+- [3.7 The `splice` method](#the-splice-method)
+- [3.8 The `length` property](#the-length-property)
+- [3.9 The `main()` function](#the-main-function)
+- - [3.9.1 Defining a `main` function](#defining-a-main-function)
+- - [3.9.2 `main` function arguments](#main-function-arguments)
+- - [3.9.3 Ignore `main` function call](#ignore-main-function-call)
+- [3.10 Defining custom types](#defining-custom-types)
+- - [3.10.1 Defining custom arrays](#defining-custom-arrays)
+- - [3.10.2 `typedef()`](#typedef)
 
 <a name="requirements"></a>
 
@@ -782,6 +784,79 @@ if ($objects->isEmpty()) {
 php examples/has_any_is_empty.php
 `$fruits` contains at least 1 element.
 `$objects` is an empty array.
+```
+
+<a name="the-splice-method"></a>
+
+### The `splice` method
+
+You can make use of the `splice` method from `array`s the same way you'd use the `array_splice` `function` with normal `array`s:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use function PHPTypes\Primitive\string_array;
+
+$fruits = string_array('🍎', '🍊', '🥭', '🍌');
+[$without_mango, $mango] = $fruits->splice(2, 1);
+
+print_r($without_mango);
+print_r($mango);
+```
+
+```bash
+php examples/splice.php
+PHPTypes\Primitive\string_array Object
+(
+    [type:protected] => string
+    [storage:ArrayIterator:private] => Array
+        (
+            [0] => 🍎
+            [1] => 🍊
+            [2] => 🍌
+        )
+
+)
+PHPTypes\Primitive\string_array Object
+(
+    [type:protected] => string
+    [storage:ArrayIterator:private] => Array
+        (
+            [0] => 🥭
+        )
+
+)
+```
+
+The `splice` method returns a `multiple`, consisting of the _resultant array_ along with the _extracted elements_ respectively.
+
+<a name="the-length-property"></a>
+
+### The `length` property
+
+Similarly to JavaScript/JS, you can make use of the `length` property to retrieve the `count` of total elements from a specific `array`:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+include 'vendor/autoload.php';
+
+use PHPTypes\Std\UInt8Array;
+
+$bytes = new UInt8Array(0, 1, 2, 4, 8, 16, 32, 64, 128);
+
+echo $bytes->length . PHP_EOL;
+```
+
+```bash
+php examples/length.php
+9
 ```
 
 <a name="the-main-function"></a>
