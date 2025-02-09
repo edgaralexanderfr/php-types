@@ -4,13 +4,22 @@ declare(strict_types=1);
 
 namespace PHPTypes;
 
-function typedef(string $type, string $name, string $type_name): void
+function typedef(string $type, string $name, ?string $type_name = null): void
 {
-    if (!in_array($type, ['array', 'multiple'])) {
+    if ($type_name === null) {
+        $type_name = $name;
+        $name = $type;
+        $type = 'type';
+    }
+
+    if (!in_array($type, ['type', 'array', 'multiple'])) {
         throw new \PHPTypes\Exception('Invalid `$type` to define');
     }
 
     switch ($type) {
+        case 'type':
+            define_type($name, $type_name);
+            break;
         case 'array':
             define_array_type($name, $type_name);
             break;
@@ -18,6 +27,89 @@ function typedef(string $type, string $name, string $type_name): void
             define_multiple_type($name, $type_name);
             break;
     }
+}
+
+function define_type(string $name, string $type_name): void
+{
+    $primitives = [
+        'bool' => 'bool',
+        'int' => 'int',
+        'float' => 'float',
+        'string' => 'string',
+        'array' => 'array',
+    ];
+
+    if (isset($primitives[strtolower($name)])) {
+        $type = $name;
+        $namespaces = array_map(fn($type_name) => str_replace('\\', '', $type_name), explode('\\', $type_name));
+        $last_index = count($namespaces) - 1;
+        $class_name = $namespaces[$last_index] ?? '';
+        array_pop($namespaces);
+        $namespace = implode('\\', $namespaces);
+
+        $code = <<<PHP
+            class {$class_name} implements \Stringable, \JsonSerializable
+            {
+                public function __construct(
+                    public {$type} \$value
+                ) {}
+
+                public function __serialize(): array
+                {
+                    return [
+                        'value' => \$this->value,
+                    ];
+                }
+
+                public function __unserialize(array \$data): void
+                {
+                    \$this->value = \$data['value'];
+                }
+
+                public function __toString(): string
+                {
+                    return (string) \$this->value;
+                }
+
+                public function jsonSerialize(): mixed
+                {
+                    return \$this->value;
+                }
+            }
+
+            function {$class_name}({$type} \$value): {$class_name}
+            {
+                return new {$class_name}(\$value);
+            }
+        PHP;
+    } else if (!class_exists($name)) {
+        throw new \PHPTypes\Exception("Class {$name} not defined");
+    } else {
+        $namespaces = array_map(fn($type_name) => str_replace('\\', '', $type_name), explode('\\', $type_name));
+        $last_index = count($namespaces) - 1;
+        $class_name = $namespaces[$last_index] ?? '';
+        array_pop($namespaces);
+        $namespace = implode('\\', $namespaces);
+
+        $code = <<<PHP
+            class {$class_name} extends {$name} {};
+
+            function {$class_name}(mixed \$value): {$class_name}
+            {
+                return new {$class_name}(\$value);
+            }
+        PHP;
+    }
+
+    if ($namespace != '') {
+        $code = <<<PHP
+            namespace {$namespace};
+
+            $code
+        PHP;
+    }
+
+    eval($code);
 }
 
 function define_array_type(string $name, string $array_name): void
