@@ -6,7 +6,9 @@ namespace PHPTypes\Primitive;
 
 use stdClass;
 
+use PHPTypes\Std\int16_t;
 use PHPTypes\Std\uint8_t;
+use PHPTypes\Std\uint16_t;
 
 class object_t extends ObjectType {};
 class bool_array extends BoolArray {};
@@ -18,10 +20,14 @@ class object_array_t extends ObjectArray {};
 class byte extends uint8_t {};
 class char extends CharType {};
 class uchar extends UCharType {};
+class short extends int16_t {};
+class ushort extends uint16_t {};
 class tuple extends TupleType {};
 class byte_array extends ByteArray {};
 class char_array extends CharArray {};
 class uchar_array extends UCharArray {};
+class short_array extends ShortArray {};
+class ushort_array extends UShortArray {};
 class tuple_array extends TupleArray {};
 
 function object_t(array|stdClass $values): object_t
@@ -74,6 +80,16 @@ function uchar(string|int $value): uchar
     return new uchar($value);
 }
 
+function short(int $value): short
+{
+    return new short($value);
+}
+
+function ushort(int $value): ushort
+{
+    return new ushort($value);
+}
+
 function tuple(mixed ...$values): tuple
 {
     return new tuple(...$values);
@@ -92,6 +108,16 @@ function char_array(CharType|char|string|int ...$values): char_array
 function uchar_array(UCharType|uchar|string|int ...$values): uchar_array
 {
     return new uchar_array(...$values);
+}
+
+function short_array(short|int ...$values): short_array
+{
+    return new short_array(...$values);
+}
+
+function ushort_array(ushort|int ...$values): ushort_array
+{
+    return new ushort_array(...$values);
 }
 
 function tuple_array(TupleType|tuple ...$values): tuple_array

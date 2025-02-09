@@ -27,6 +27,9 @@ use PHPTypes\Primitive\object_array_t;
 use PHPTypes\Primitive\object_t;
 use PHPTypes\Primitive\ObjectArray;
 use PHPTypes\Primitive\ObjectType;
+use PHPTypes\Primitive\short;
+use PHPTypes\Primitive\short_array;
+use PHPTypes\Primitive\ShortArray;
 use PHPTypes\Primitive\string_array;
 use PHPTypes\Primitive\StringArray;
 use PHPTypes\Primitive\tuple_array;
@@ -37,6 +40,9 @@ use PHPTypes\Primitive\uchar_array;
 use PHPTypes\Primitive\uchar;
 use PHPTypes\Primitive\UCharArray;
 use PHPTypes\Primitive\UCharType;
+use PHPTypes\Primitive\ushort;
+use PHPTypes\Primitive\ushort_array;
+use PHPTypes\Primitive\UShortArray;
 use PHPTypes\Returnable\multiple_array;
 use PHPTypes\Returnable\multiple;
 use PHPTypes\Returnable\MultipleArray;
@@ -86,6 +92,8 @@ use PHPTypes\Std\UInt8Type;
  * - `"uint16_t"`
  * - `"char"`
  * - `"uchar"`
+ * - `"short"`
+ * - `"ushort"`
  * - `"size_t"`
  * - `"multiple"`
  * - `"tuple"`
@@ -97,6 +105,8 @@ use PHPTypes\Std\UInt8Type;
  * - `"uint16_array"`
  * - `"char_array"`
  * - `"uchar_array"`
+ * - `"short_array"`
+ * - `"ushort_array"`
  * - `"size_array"`
  * - `"multiple_array"`
  * - `"tuple_array"`
@@ -138,6 +148,14 @@ function typeof(mixed $var): string
 
     if ($var instanceof byte) {
         return 'byte';
+    }
+
+    if ($var instanceof short) {
+        return 'short';
+    }
+
+    if ($var instanceof ushort) {
+        return 'ushort';
     }
 
     if ($var instanceof uint8_t || $var instanceof UInt8Type) {
@@ -202,6 +220,14 @@ function typeof(mixed $var): string
 
     if ($var instanceof uchar_array || $var instanceof UCharArray) {
         return 'uchar_array';
+    }
+
+    if ($var instanceof short_array || $var instanceof ShortArray) {
+        return 'short_array';
+    }
+
+    if ($var instanceof ushort_array || $var instanceof UShortArray) {
+        return 'ushort_array';
     }
 
     if ($var instanceof size_array || $var instanceof SizeArray) {
