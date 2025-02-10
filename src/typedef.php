@@ -76,11 +76,6 @@ function define_type(string $name, string $type_name): void
                     return \$this->value;
                 }
             }
-
-            function {$class_name}({$type} \$value): {$class_name}
-            {
-                return new {$class_name}(\$value);
-            }
         PHP;
     } else if (!class_exists($name)) {
         throw new \PHPTypes\Exception("Class {$name} not defined");
@@ -93,11 +88,6 @@ function define_type(string $name, string $type_name): void
 
         $code = <<<PHP
             class {$class_name} extends {$name} {};
-
-            function {$class_name}(mixed \$value): {$class_name}
-            {
-                return new {$class_name}(\$value);
-            }
         PHP;
     }
 
