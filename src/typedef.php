@@ -91,11 +91,23 @@ function define_type(string $name, string $type_name): void
         PHP;
     }
 
+    /** @disregard */
+    if (!defined('PHPTYPES_IGNORE_TYPEDEF_FUNCTIONS') || !PHPTYPES_IGNORE_TYPEDEF_FUNCTIONS) {
+        $code = <<<PHP
+            {$code}
+
+            function {$class_name}(mixed \$value): {$class_name}
+            {
+                return new {$class_name}(\$value);
+            }
+        PHP;
+    }
+
     if ($namespace != '') {
         $code = <<<PHP
             namespace {$namespace};
 
-            $code
+            {$code}
         PHP;
     }
 
