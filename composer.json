@@ -18,7 +18,8 @@
             "src/Primitive/types.php",
             "src/Returnable/types.php",
             "src/typedef.php",
-            "src/typeof.php"
+            "src/typeof.php",
+            "src/phppp.php"
         ],
         "psr-4": {
             "PHPTypes\\": "src/"
